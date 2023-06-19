@@ -9,7 +9,7 @@ This example was heavily inspired by
 
 from urllib.parse import quote_plus
 
-import pylemmy
+from pylemmy import Lemmy
 from pylemmy.models.post import Post
 
 QUESTIONS = ["what is", "who is", "what are"]
@@ -17,22 +17,21 @@ REPLY_TEMPLATE = "[Let me google that for you](https://lmgtfy.com/?q={})"
 
 
 def main():
-    lemmy = pylemmy.Lemmy(
+    lemmy = Lemmy(
         lemmy_url="http://127.0.0.1:8536",
         username="lemmy",
         password="lemmylemmy",
         user_agent="LMGTFY (by u/USERNAME)",
     )
-    print(lemmy.get_token())
 
-    subreddit = lemmy.get_community("AskReddit")
-    for submission in subreddit.stream.get_posts():
-        process_submission(submission)
+    community = lemmy.get_community("test")
+    for post in community.stream.get_posts():
+        process_post(post)
 
 
-def process_submission(submission: Post):
+def process_post(post: Post):
     # Ignore titles with more than 10 words as they probably are not simple questions.
-    title = submission.post_view.post.name
+    title = post.post_view.post.name
     if len(title.split()) > 10:
         return
 
@@ -42,7 +41,7 @@ def process_submission(submission: Post):
             url_title = quote_plus(title)
             reply_text = REPLY_TEMPLATE.format(url_title)
             print(f"Replying to: {title}")
-            submission.create_comment(reply_text)
+            post.create_comment(reply_text)
             # A reply has been made so do not attempt to match other phrases.
             break
 

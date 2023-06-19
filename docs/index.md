@@ -1,17 +1,33 @@
-# Welcome to MkDocs
+# pylemmy
 
-For full documentation visit [mkdocs.org](https://www.mkdocs.org).
+pylemmy enables simple access to [Lemmy](https://join-lemmy.org/)'s API with Python.
 
-## Commands
+## Installation
 
-* `mkdocs new [dir-name]` - Create a new project.
-* `mkdocs serve` - Start the live-reloading docs server.
-* `mkdocs build` - Build the documentation site.
-* `mkdocs -h` - Print help message and exit.
+```commandline
+pip install pylemmy
+```
 
-## Project layout
+## Usage
 
-    mkdocs.yml    # The configuration file.
-    docs/
-        index.md  # The documentation homepage.
-        ...       # Other markdown pages, images and other files.
+Simple example of running a Python function on new posts, as they are created.
+
+```python
+from pylemmy import Lemmy
+
+def process_post(post):
+    ...
+
+lemmy = Lemmy(
+    lemmy_url="http://127.0.0.1:8536",
+    username="lemmy",
+    password="lemmylemmy",
+    user_agent="LMGTFY (by u/USERNAME)",
+)
+
+community = lemmy.get_community("test")
+for post in community.stream.get_posts():
+    process_post(post)
+```
+
+For more examples, see 

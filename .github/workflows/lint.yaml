@@ -3,7 +3,7 @@ name: Lint
 on: push
 
 jobs:
-  run:
+  lint:
     name: Lint on Python
     runs-on: "ubuntu-22.04"
 

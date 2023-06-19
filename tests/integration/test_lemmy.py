@@ -3,7 +3,7 @@ import pytest
 
 import pylemmy
 
-from .api import wait_for_api  # noqa: F401
+from .test_api import wait_for_api  # noqa: F401
 
 
 @pytest.fixture

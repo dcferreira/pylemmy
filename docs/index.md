@@ -30,4 +30,4 @@ for post in community.stream.get_posts():
     process_post(post)
 ```
 
-For more examples, see 
+For more examples, see [the examples directory on GitHub](https://github.com/dcferreira/pylemmy/tree/main/examples).

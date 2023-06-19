@@ -1,7 +1,9 @@
 name: Integration test
 
 on:
-  push
+  push:
+    branches:
+      - main
 
 jobs:
   integration-tests:
@@ -16,4 +18,4 @@ jobs:
         with:
           python-version: ${{ matrix.python-version }}
       - run: pip install hatch
-      - run: hatch run test
+      - run: hatch run integration

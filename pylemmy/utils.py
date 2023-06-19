@@ -1,3 +1,4 @@
+"""General utilities package."""
 import time
 from typing import Any, Callable, Generator, Iterable, Optional, TypeVar
 
@@ -14,6 +15,20 @@ def stream_generator(
     min_wait_time: int = 1,
     **function_kwargs: Any,
 ) -> Generator[T, None, None]:
+    """Helper function to generate streams.
+
+    :param function: A function to call repeatedly, which outputs a list of objects.
+    :param unique_key_fn: A function that takes an object and outputs a unique id.
+    This is used to keep track of what results were already yielded.
+    :param filter_fn: Ignore objects which return `True` for this function.
+    :param limit: Maximum number of objects to yield.
+    :param max_wait_time: If a function returns no new results, the time between calls
+    to it increases. This sets the maximum time (in seconds) to wait before calling it
+    again.
+    :param min_wait_time: Minimum time (in seconds) to wait before calling the function
+    again.
+    :param function_kwargs: Keyword parameters that are passed to the function.
+    """
     found_keys = set()
     count = 0
     last_key: str = ""

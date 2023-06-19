@@ -43,6 +43,7 @@ dependencies = [
     "coverage[toml]>=6.5",
     "mypy",
     "types-requests",
+    "pre-commit",
     "pytest",
     "pytest-docker-compose @ git+https://github.com/tmeckel/pytest-docker-compose@feat/docker-compose-v2",
 ]
@@ -57,7 +58,7 @@ cov = [
     "test-cov",
     "cov-report",
 ]
-types = ["mypy {args:.}"]
+typing = ["mypy {args:.}"]
 
 [[tool.hatch.envs.all.matrix]]
 python = ["3.7", "3.8", "3.9", "3.10", "3.11"]
@@ -66,11 +67,9 @@ python = ["3.7", "3.8", "3.9", "3.10", "3.11"]
 detached = true
 dependencies = [
     "black>=23.1.0",
-    "mypy>=1.0.0",
     "ruff>=0.0.243",
 ]
 [tool.hatch.envs.lint.scripts]
-typing = "mypy --install-types --non-interactive {args:pylemmy tests}"
 style = [
     "ruff {args:.}",
     "black --check --diff {args:.}",
@@ -80,10 +79,18 @@ fmt = [
     "ruff --fix {args:.}",
     "style",
 ]
-all = [
-    "style",
-    "typing",
+
+[tool.hatch.envs.docs]
+detached = true
+dependencies = [
+    "mkdocs~=1.4.3",
+    "mkdocs-material~=9.1.16",
+    "mkdocs-autorefs~=0.4.1",
+    "mkdocstrings[python]~=0.22.0",
 ]
+[tool.hatch.envs.docs.scripts]
+build = "mkdocs build"
+serve = "mkdocs serve"
 
 [tool.black]
 target-version = ["py37"]
@@ -128,6 +135,8 @@ ignore = [
     "S105", "S106", "S107",
     # Ignore complexity
     "C901", "PLR0911", "PLR0912", "PLR0913", "PLR0915",
+    # Allow blank lines after section in docstrings
+    "D412",
 ]
 unfixable = [
     # Don't touch unused imports
@@ -145,8 +154,8 @@ ban-relative-imports = "all"
 "tests/**/*" = ["PLR2004", "S101", "TID252"]
 # Examples can have prints and magic values, and don't need docstrings
 "examples/*" = ["D103", "PLR2004", "T201"]
-# Allow `id` and `type` shadowing in the api files
-"pylemmy/api/*" = ["A003"]
+# Allow `id` and `type` shadowing in the api files, and no need for docstrings
+"pylemmy/api/*" = ["A003", "D10"]
 
 [tool.ruff.pydocstyle]
 convention = "google"
@@ -169,3 +178,8 @@ exclude_lines = [
     "if __name__ == .__main__.:",
     "if TYPE_CHECKING:",
 ]
+
+[tool.pytest.ini_options]
+addopts = """
+--docker-compose=tests/integration/docker-compose.yml \
+--docker-compose-remove-volumes"""

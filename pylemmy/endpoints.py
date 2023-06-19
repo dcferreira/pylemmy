@@ -1,9 +1,14 @@
+"""Lists Lemmy endpoints."""
+
+
 from enum import Enum
 
 base_api_path = "/api/v3/"
 
 
 class LemmyAPI(str, Enum):
+    """Possible Lemmy endpoints."""
+
     login = base_api_path + "user/login"
     community = base_api_path + "community"
     post = base_api_path + "post"

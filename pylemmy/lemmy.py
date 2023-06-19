@@ -1,3 +1,4 @@
+"""Implements the Lemmy class."""
 import urllib.parse
 from typing import List, Optional, Union
 
@@ -11,6 +12,23 @@ from pylemmy.models.post import Post
 
 
 class Lemmy:
+    """The Lemmy class provides the main entrypoint for pylemmy, and Lemmy's API.
+
+    This class manages all the settings relating how to access your chosen
+    Lemmy instance, and implements the Lemmy API.
+
+    Example:
+
+        from pylemmy import Lemmy
+
+        lemmy = Lemmy(
+            lemmy_url="http://127.0.0.1:8536",
+            username="lemmy",
+            password="lemmylemmy",
+            user_agent="custom user-agent (by u/USERNAME)",
+        )
+    """
+
     def __init__(
         self,
         lemmy_url: Union[str, AnyUrl],
@@ -19,6 +37,14 @@ class Lemmy:
         user_agent: str,
         request_timeout: int = 30,
     ):
+        """Initialize a Lemmy instance.
+
+        :param lemmy_url: The URL for the Lemmy instance you want to access.
+        :param username: Your Lemmy username or email.
+        :param password: Your Lemmy password
+        :param user_agent: The user agent the requests will use.
+        :param request_timeout: A maximum timeout to wait for requests (in seconds).
+        """
         self.lemmy_url = (
             lemmy_url
             if isinstance(lemmy_url, AnyUrl)
@@ -32,10 +58,18 @@ class Lemmy:
 
         self._login_response: Optional[api.auth.LoginResponse] = None
 
+        self.session = requests.Session()
+        self.session.headers.update({"User-Agent": self.user_agent})
+
     def _get_url(self, path: LemmyAPI):
         return urllib.parse.urljoin(self.lemmy_url, path)
 
-    def login(self):
+    def login(self) -> api.auth.LoginResponse:
+        """Login to Lemmy.
+
+        If the user is already logged in, return the response to the original login
+        request, with the session information.
+        """
         if self._login_response is None:
             if self.username is not None and self.password is not None:
                 response = self.post_request(
@@ -54,10 +88,19 @@ class Lemmy:
                 raise ValueError(msg)
         return self._login_response
 
-    def get_token(self):
-        return self.login().jwt
+    def get_token(self) -> str:
+        """Get the jwt session token."""
+        jwt = self.login().jwt
+        if jwt is None:
+            msg = "No jwt token was found, try logging in again."
+            raise RuntimeError(msg)
+        return jwt
 
     def get_community(self, community: Union[str, int]) -> Community:
+        """Get a community by id or name.
+
+        :param community: Either a community id (int) or name (str).
+        """
         if isinstance(community, str):
             payload = api.community.GetCommunity(auth=self.get_token(), name=community)
         elif isinstance(community, int):
@@ -69,43 +112,29 @@ class Lemmy:
         parsed_result = api.community.GetCommunityResponse(**result)
         return Community(self, parsed_result.community_view)
 
-    def create_community(
-        self,
-        name: str,
-        title: str,
-        banner: Optional[str] = None,
-        description: Optional[str] = None,
-        discussion_languages: Optional[List[int]] = None,
-        icon: Optional[str] = None,
-        nsfw: Optional[bool] = None,
-        posting_restricted_to_mods: Optional[bool] = None,
-    ) -> Community:
+    def create_community(self, name: str, title: str, **kwargs) -> Community:
+        """Create a community with the given name and title.
+
+        :param name: Name of the community (stub-like, this will be in the URL).
+        :param title: Title of the community, in natural language.
+        :param kwargs: See optional arguments in [CreateCommunity](
+        https://join-lemmy.org/api/interfaces/CreateCommunity.html).
+        """
         payload = api.community.CreateCommunity(
-            auth=self.get_token(),
-            name=name,
-            title=title,
-            banner=banner,
-            description=description,
-            discussion_languages=discussion_languages,
-            icon=icon,
-            nsfw=nsfw,
-            posting_restricted_to_mods=posting_restricted_to_mods,
+            auth=self.get_token(), name=name, title=title, **kwargs
         )
         result = self.post_request(LemmyAPI.community, params=payload)
         parsed_result = api.community.CommunityResponse(**result)
 
         return Community(self, parsed_result.community_view)
 
-    def list_communities(
-        self,
-        limit: Optional[int] = None,
-        page: Optional[int] = None,
-        sort: Optional[api.listing.SortType] = None,
-        type_: Optional[api.listing.ListingType] = None,
-    ) -> List[Community]:
-        payload = api.community.ListCommunities(
-            auth=self.get_token(), limit=limit, page=page, sort=sort, type_=type_
-        )
+    def list_communities(self, **kwargs) -> List[Community]:
+        """List the communities in the current Lemmy instance.
+
+        :param kwargs: See optional arguments in [ListCommunities](
+        https://join-lemmy.org/api/interfaces/ListCommunities.html).
+        """
+        payload = api.community.ListCommunities(auth=self.get_token(), **kwargs)
         result = self.get_request(LemmyAPI.list_communities, params=payload)
         parsed_result = api.community.ListCommunitiesResponse(**result)
 
@@ -114,6 +143,11 @@ class Lemmy:
     def get_post(
         self, *, post_id: Optional[int] = None, comment_id: Optional[int] = None
     ) -> Post:
+        """Get a post from its id.
+
+        :param post_id: Id of the post.
+        :param comment_id: Id of the comment.
+        """
         if post_id is not None:
             payload = api.post.GetPost(auth=self.get_token(), id=post_id)
         elif comment_id is not None:
@@ -132,7 +166,12 @@ class Lemmy:
         path: LemmyAPI,
         params: Optional[BaseModel] = None,
     ):
-        response = requests.post(
+        """Send a POST request to the desired path.
+
+        :param path: A Lemmy endpoint.
+        :param params: Parameters to send with the request (in the body).
+        """
+        response = self.session.post(
             self._get_url(path),
             json=params.dict() if params is not None else {},
             timeout=self.request_timeout,
@@ -144,7 +183,12 @@ class Lemmy:
         path: LemmyAPI,
         params: Optional[BaseModel] = None,
     ):
-        response = requests.get(
+        """Send a GET request to the desired path.
+
+        :param path: A Lemmy endpoint.
+        :param params: Parameters to send with the request (in the URL).
+        """
+        response = self.session.get(
             self._get_url(path),
             params=params.dict() if params is not None else {},
             timeout=self.request_timeout,

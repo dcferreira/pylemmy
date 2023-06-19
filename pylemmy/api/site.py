@@ -1,9 +1,9 @@
 from typing import Optional
 
-from pydantic import BaseModel
+from pylemmy.api.utils import BaseApiModel
 
 
-class Site(BaseModel):
+class Site(BaseApiModel):
     actor_id: str
     banner: Optional[str]
     description: str

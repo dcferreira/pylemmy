@@ -1,9 +1,9 @@
 from typing import Optional
 
-from pydantic import BaseModel
+from pylemmy.api.utils import BaseApiModel
 
 
-class Person(BaseModel):
+class Person(BaseApiModel):
     actor_id: str
     admin: bool
     avatar: Optional[str]

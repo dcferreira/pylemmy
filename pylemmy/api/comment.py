@@ -1,12 +1,11 @@
 from enum import Enum
 from typing import List, Optional
 
-from pydantic import BaseModel
-
 from pylemmy.api.community import Community, SubscribedType
 from pylemmy.api.listing import ListingType
 from pylemmy.api.person import Person
 from pylemmy.api.post import Post
+from pylemmy.api.utils import BaseApiModel
 
 
 class CommentSortType(str, Enum):
@@ -16,7 +15,7 @@ class CommentSortType(str, Enum):
     Old = "Old"
 
 
-class CreateComment(BaseModel):
+class CreateComment(BaseApiModel):
     content: str
     post_id: int
     parent_id: Optional[int]
@@ -25,7 +24,7 @@ class CreateComment(BaseModel):
     auth: str
 
 
-class Comment(BaseModel):
+class Comment(BaseApiModel):
     id: int
     creator_id: int
     post_id: int
@@ -41,7 +40,7 @@ class Comment(BaseModel):
     language_id: int
 
 
-class CommentAggregates(BaseModel):
+class CommentAggregates(BaseApiModel):
     id: int
     comment_id: int
     score: int
@@ -52,7 +51,7 @@ class CommentAggregates(BaseModel):
     hot_rank: int
 
 
-class CommentView(BaseModel):
+class CommentView(BaseApiModel):
     comment: Comment
     creator: Person
     post: Post
@@ -65,13 +64,13 @@ class CommentView(BaseModel):
     my_vote: Optional[int]
 
 
-class CommentResponse(BaseModel):
+class CommentResponse(BaseApiModel):
     comment_view: CommentView
     recipient_ids: List[int]
     form_id: Optional[str]
 
 
-class GetComments(BaseModel):
+class GetComments(BaseApiModel):
     auth: Optional[str]
     community_id: Optional[int]
     community_name: Optional[str]
@@ -85,5 +84,5 @@ class GetComments(BaseModel):
     type_: Optional[ListingType]
 
 
-class GetCommentsResponse(BaseModel):
+class GetCommentsResponse(BaseApiModel):
     comments: List[CommentView]

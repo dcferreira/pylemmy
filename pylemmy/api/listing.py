@@ -1,7 +1,7 @@
 from enum import Enum
 
 
-class SortType(str, Enum):
+class SortType(Enum):
     Active = "Active"
     Hot = "Hot"
     MostComments = "MostComments"
@@ -15,7 +15,7 @@ class SortType(str, Enum):
     TopYear = "TopYear"
 
 
-class ListingType(str, Enum):
+class ListingType(Enum):
     All = "All"
     Community = "Community"
     Local = "Local"

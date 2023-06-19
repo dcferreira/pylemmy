@@ -48,7 +48,7 @@ class Post:
             post_id=self.post_view.post.id,
             **kwargs,
         )
-        result = self.lemmy.post_request(LemmyAPI.comment, params=payload)
+        result = self.lemmy.post_request(LemmyAPI.Comment, params=payload)
         parsed_result = api.comment.CommentResponse(**result)
 
         return Comment(
@@ -64,7 +64,7 @@ class Post:
         payload = api.comment.GetComments(
             auth=self.lemmy.get_token(), post_id=self.post_view.post.id, **kwargs
         )
-        result = self.lemmy.get_request(LemmyAPI.get_comments, params=payload)
+        result = self.lemmy.get_request(LemmyAPI.GetComments, params=payload)
         parsed_result = api.comment.GetCommentsResponse(**result)
 
         return [

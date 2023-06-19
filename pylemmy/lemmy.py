@@ -3,9 +3,10 @@ import urllib.parse
 from typing import List, Optional, Union
 
 import requests
-from pydantic import AnyUrl, BaseModel, parse_obj_as
+from pydantic import AnyUrl, parse_obj_as
 
 from pylemmy import api
+from pylemmy.api.utils import BaseApiModel
 from pylemmy.endpoints import LemmyAPI
 from pylemmy.models.community import Community
 from pylemmy.models.post import Post
@@ -62,7 +63,7 @@ class Lemmy:
         self.session.headers.update({"User-Agent": self.user_agent})
 
     def _get_url(self, path: LemmyAPI):
-        return urllib.parse.urljoin(self.lemmy_url, path)
+        return urllib.parse.urljoin(self.lemmy_url, path.value)
 
     def login(self) -> api.auth.LoginResponse:
         """Login to Lemmy.
@@ -73,7 +74,7 @@ class Lemmy:
         if self._login_response is None:
             if self.username is not None and self.password is not None:
                 response = self.post_request(
-                    LemmyAPI.login,
+                    LemmyAPI.Login,
                     params=api.auth.Login(
                         username_or_email=self.username, password=self.password
                     ),
@@ -108,7 +109,7 @@ class Lemmy:
         else:
             raise ValueError()
 
-        result = self.get_request(LemmyAPI.community, params=payload)
+        result = self.get_request(LemmyAPI.Community, params=payload)
         parsed_result = api.community.GetCommunityResponse(**result)
         return Community(self, parsed_result.community_view)
 
@@ -123,7 +124,7 @@ class Lemmy:
         payload = api.community.CreateCommunity(
             auth=self.get_token(), name=name, title=title, **kwargs
         )
-        result = self.post_request(LemmyAPI.community, params=payload)
+        result = self.post_request(LemmyAPI.Community, params=payload)
         parsed_result = api.community.CommunityResponse(**result)
 
         return Community(self, parsed_result.community_view)
@@ -135,7 +136,7 @@ class Lemmy:
         https://join-lemmy.org/api/interfaces/ListCommunities.html).
         """
         payload = api.community.ListCommunities(auth=self.get_token(), **kwargs)
-        result = self.get_request(LemmyAPI.list_communities, params=payload)
+        result = self.get_request(LemmyAPI.ListCommunities, params=payload)
         parsed_result = api.community.ListCommunitiesResponse(**result)
 
         return [Community(self, view) for view in parsed_result.communities]
@@ -156,7 +157,7 @@ class Lemmy:
             msg = "Need to give either a post id or a comment id."
             raise ValueError(msg)
 
-        result = self.get_request(LemmyAPI.post, params=payload)
+        result = self.get_request(LemmyAPI.Post, params=payload)
         parsed_result = api.post.GetPostResponse(**result)
 
         return Post(self, parsed_result.post_view)
@@ -164,7 +165,7 @@ class Lemmy:
     def post_request(
         self,
         path: LemmyAPI,
-        params: Optional[BaseModel] = None,
+        params: Optional[BaseApiModel] = None,
     ):
         """Send a POST request to the desired path.
 
@@ -181,7 +182,7 @@ class Lemmy:
     def get_request(
         self,
         path: LemmyAPI,
-        params: Optional[BaseModel] = None,
+        params: Optional[BaseApiModel] = None,
     ):
         """Send a GET request to the desired path.
 

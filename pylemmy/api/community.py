@@ -1,20 +1,19 @@
 from enum import Enum
 from typing import List, Optional
 
-from pydantic import BaseModel
-
 from pylemmy.api.listing import ListingType, SortType
 from pylemmy.api.person import Person
 from pylemmy.api.site import Site
+from pylemmy.api.utils import BaseApiModel
 
 
-class GetCommunity(BaseModel):
+class GetCommunity(BaseApiModel):
     auth: Optional[str] = None
     id: Optional[int] = None
     name: Optional[str] = None
 
 
-class Community(BaseModel):
+class Community(BaseApiModel):
     actor_id: str
     banner: Optional[str]
     deleted: bool
@@ -33,7 +32,7 @@ class Community(BaseModel):
     updated: Optional[str]
 
 
-class CommunityAggregates(BaseModel):
+class CommunityAggregates(BaseApiModel):
     comments: int
     community_id: int
     id: int
@@ -45,32 +44,32 @@ class CommunityAggregates(BaseModel):
     users_active_week: int
 
 
-class SubscribedType(str, Enum):
+class SubscribedType(Enum):
     NotSubscribed = "NotSubscribed"
     Pending = "Pending"
     Subscribed = "Subscribed"
 
 
-class CommunityView(BaseModel):
+class CommunityView(BaseApiModel):
     blocked: bool
     community: Community
     counts: CommunityAggregates
     subscribed: SubscribedType
 
 
-class CommunityModeratorView(BaseModel):
+class CommunityModeratorView(BaseApiModel):
     community: Community
     moderator: Person
 
 
-class GetCommunityResponse(BaseModel):
+class GetCommunityResponse(BaseApiModel):
     community_view: CommunityView
     discussion_languages: List[int]
     moderators: List[CommunityModeratorView]
     site: Optional[Site]
 
 
-class CreateCommunity(BaseModel):
+class CreateCommunity(BaseApiModel):
     auth: str
     banner: Optional[str]
     description: Optional[str]
@@ -82,12 +81,12 @@ class CreateCommunity(BaseModel):
     title: str
 
 
-class CommunityResponse(BaseModel):
+class CommunityResponse(BaseApiModel):
     community_view: CommunityView
     discussion_languages: List[int]
 
 
-class ListCommunities(BaseModel):
+class ListCommunities(BaseApiModel):
     auth: Optional[str]
     limit: Optional[int]
     page: Optional[int]
@@ -95,5 +94,5 @@ class ListCommunities(BaseModel):
     type_: Optional[ListingType]
 
 
-class ListCommunitiesResponse(BaseModel):
+class ListCommunitiesResponse(BaseApiModel):
     communities: List[CommunityView]

@@ -1,7 +1,5 @@
 from typing import List, Optional
 
-from pydantic import BaseModel
-
 from pylemmy.api.community import (
     Community,
     CommunityModeratorView,
@@ -10,9 +8,10 @@ from pylemmy.api.community import (
 )
 from pylemmy.api.listing import ListingType, SortType
 from pylemmy.api.person import Person
+from pylemmy.api.utils import BaseApiModel
 
 
-class CreatePost(BaseModel):
+class CreatePost(BaseApiModel):
     auth: str
     body: Optional[str]
     community_id: int
@@ -23,7 +22,7 @@ class CreatePost(BaseModel):
     url: Optional[str]
 
 
-class Post(BaseModel):
+class Post(BaseApiModel):
     ap_id: str
     body: Optional[str]
     community_id: int
@@ -47,7 +46,7 @@ class Post(BaseModel):
     url: Optional[str]
 
 
-class PostAggregates(BaseModel):
+class PostAggregates(BaseApiModel):
     comments: int
     downvotes: int
     featured_community: bool
@@ -60,7 +59,7 @@ class PostAggregates(BaseModel):
     upvotes: int
 
 
-class PostView(BaseModel):
+class PostView(BaseApiModel):
     community: Community
     counts: PostAggregates
     creator: Person
@@ -74,24 +73,24 @@ class PostView(BaseModel):
     unread_comments: int
 
 
-class PostResponse(BaseModel):
+class PostResponse(BaseApiModel):
     post_view: PostView
 
 
-class GetPost(BaseModel):
+class GetPost(BaseApiModel):
     auth: Optional[str] = None
     comment_id: Optional[int] = None
     id: Optional[int] = None
 
 
-class GetPostResponse(BaseModel):
+class GetPostResponse(BaseApiModel):
     community_view: CommunityView
     moderators: List[CommunityModeratorView]
     online: int
     post_view: PostView
 
 
-class GetPosts(BaseModel):
+class GetPosts(BaseApiModel):
     auth: Optional[str]
     community_id: Optional[int]
     community_name: Optional[str]
@@ -102,5 +101,5 @@ class GetPosts(BaseModel):
     type_: Optional[ListingType]
 
 
-class GetPostsResponse(BaseModel):
+class GetPostsResponse(BaseApiModel):
     posts: List[PostView]

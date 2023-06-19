@@ -41,7 +41,7 @@ class Community:
         payload = api.post.CreatePost(
             auth=self.lemmy.get_token(), name=name, community_id=self.safe.id, **kwargs
         )
-        result = self.lemmy.post_request(LemmyAPI.post, params=payload)
+        result = self.lemmy.post_request(LemmyAPI.Post, params=payload)
         parsed_result = api.post.PostResponse(**result)
 
         return Post(self.lemmy, parsed_result.post_view, community=self)
@@ -55,7 +55,7 @@ class Community:
         payload = api.post.GetPosts(
             auth=self.lemmy.get_token(), community_id=self.safe.id, **kwargs
         )
-        result = self.lemmy.get_request(LemmyAPI.get_posts, params=payload)
+        result = self.lemmy.get_request(LemmyAPI.GetPosts, params=payload)
         parsed_result = api.post.GetPostsResponse(**result)
 
         return [Post(self.lemmy, post, community=self) for post in parsed_result.posts]
@@ -69,7 +69,7 @@ class Community:
         payload = api.comment.GetComments(
             auth=self.lemmy.get_token(), community_id=self.safe.id, **kwargs
         )
-        result = self.lemmy.get_request(LemmyAPI.get_comments, params=payload)
+        result = self.lemmy.get_request(LemmyAPI.GetComments, params=payload)
         parsed_result = api.comment.GetCommentsResponse(**result)
 
         return [Comment(self.lemmy, comment) for comment in parsed_result.comments]
@@ -129,6 +129,6 @@ class CommunityStream:
         """
         return stream_generator(
             self.community.get_comments,
-            lambda x: str(x.comment_view.comment.ap_id),
+            lambda x: str(x.comment_view.Comment.ap_id),
             **kwargs,
         )

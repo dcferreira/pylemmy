@@ -62,7 +62,9 @@ class Post:
         https://join-lemmy.org/api/interfaces/GetComments.html).
         """
         payload = api.comment.GetComments(
-            auth=self.lemmy.get_token(), post_id=self.post_view.post.id, **kwargs
+            auth=self.lemmy.get_token_optional(),
+            post_id=self.post_view.post.id,
+            **kwargs,
         )
         result = self.lemmy.get_request(LemmyAPI.GetComments, params=payload)
         parsed_result = api.comment.GetCommentsResponse(**result)

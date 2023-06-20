@@ -22,7 +22,7 @@ lemmy = Lemmy(
     lemmy_url="http://127.0.0.1:8536",
     username="lemmy",
     password="lemmylemmy",
-    user_agent="LMGTFY (by u/USERNAME)",
+    user_agent="custom user agent (by u/USERNAME)",
 )
 
 community = lemmy.get_community("test")

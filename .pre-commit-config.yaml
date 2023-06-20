@@ -13,3 +13,4 @@ repos:
     hooks:
       - id: mypy
         additional_dependencies: [types-requests, pydantic, pytest]
+        files: 'pylemmy tests'

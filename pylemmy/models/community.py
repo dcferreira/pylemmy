@@ -53,7 +53,7 @@ class Community:
         https://join-lemmy.org/api/interfaces/GetPosts.html).
         """
         payload = api.post.GetPosts(
-            auth=self.lemmy.get_token(), community_id=self.safe.id, **kwargs
+            auth=self.lemmy.get_token_optional(), community_id=self.safe.id, **kwargs
         )
         result = self.lemmy.get_request(LemmyAPI.GetPosts, params=payload)
         parsed_result = api.post.GetPostsResponse(**result)
@@ -67,7 +67,7 @@ class Community:
         https://join-lemmy.org/api/interfaces/GetComments.html).
         """
         payload = api.comment.GetComments(
-            auth=self.lemmy.get_token(), community_id=self.safe.id, **kwargs
+            auth=self.lemmy.get_token_optional(), community_id=self.safe.id, **kwargs
         )
         result = self.lemmy.get_request(LemmyAPI.GetComments, params=payload)
         parsed_result = api.comment.GetCommentsResponse(**result)
@@ -117,7 +117,7 @@ class CommunityStream:
         """
         return stream_generator(
             self.community.get_posts,
-            lambda x: str(x.post_view.post_request.ap_id),
+            lambda x: str(x.post_view.post.ap_id),
             **kwargs,
         )
 
@@ -129,6 +129,6 @@ class CommunityStream:
         """
         return stream_generator(
             self.community.get_comments,
-            lambda x: str(x.comment_view.Comment.ap_id),
+            lambda x: str(x.comment_view.comment.ap_id),
             **kwargs,
         )

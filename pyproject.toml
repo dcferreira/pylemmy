@@ -31,7 +31,7 @@ dependencies = [
 ]
 
 [project.urls]
-Documentation = "https://github.com/dcferreira/pylemmy#readme"
+Documentation = "https://dcferreira.com/pylemmy"
 Issues = "https://github.com/dcferreira/pylemmy/issues"
 Source = "https://github.com/dcferreira/pylemmy"
 

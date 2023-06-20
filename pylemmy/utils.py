@@ -35,8 +35,6 @@ def stream_generator(
 
     wait_time = min_wait_time
     while True:
-        if limit is not None and count >= limit:
-            break
         first_key = last_key
         results = function(**function_kwargs)
         for r in filter(filter_fn, results):
@@ -44,6 +42,9 @@ def stream_generator(
             if unique_key not in found_keys:
                 last_key = unique_key
                 yield r
+                count += 1
+                if limit is not None and count >= limit:
+                    return
                 found_keys.add(unique_key)
 
         if first_key == last_key:  # no new results
@@ -52,4 +53,3 @@ def stream_generator(
             wait_time = min_wait_time
 
         time.sleep(wait_time)
-        count += 1

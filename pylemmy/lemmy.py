@@ -97,15 +97,28 @@ class Lemmy:
             raise RuntimeError(msg)
         return jwt
 
+    def get_token_optional(self) -> Optional[str]:
+        """Get the jwt session token if it exists, or `None`.
+
+        This should be used for requests that don't need authentication.
+        """
+        if self.username is None or self.password is None:
+            return None
+        return self.get_token()
+
     def get_community(self, community: Union[str, int]) -> Community:
         """Get a community by id or name.
 
         :param community: Either a community id (int) or name (str).
         """
         if isinstance(community, str):
-            payload = api.community.GetCommunity(auth=self.get_token(), name=community)
+            payload = api.community.GetCommunity(
+                auth=self.get_token_optional(), name=community
+            )
         elif isinstance(community, int):
-            payload = api.community.GetCommunity(auth=self.get_token(), id=community)
+            payload = api.community.GetCommunity(
+                auth=self.get_token_optional(), id=community
+            )
         else:
             raise ValueError()
 
@@ -135,7 +148,9 @@ class Lemmy:
         :param kwargs: See optional arguments in [ListCommunities](
         https://join-lemmy.org/api/interfaces/ListCommunities.html).
         """
-        payload = api.community.ListCommunities(auth=self.get_token(), **kwargs)
+        payload = api.community.ListCommunities(
+            auth=self.get_token_optional(), **kwargs
+        )
         result = self.get_request(LemmyAPI.ListCommunities, params=payload)
         parsed_result = api.community.ListCommunitiesResponse(**result)
 
@@ -150,9 +165,11 @@ class Lemmy:
         :param comment_id: Id of the comment.
         """
         if post_id is not None:
-            payload = api.post.GetPost(auth=self.get_token(), id=post_id)
+            payload = api.post.GetPost(auth=self.get_token_optional(), id=post_id)
         elif comment_id is not None:
-            payload = api.post.GetPost(auth=self.get_token(), comment_id=comment_id)
+            payload = api.post.GetPost(
+                auth=self.get_token_optional(), comment_id=comment_id
+            )
         else:
             msg = "Need to give either a post id or a comment id."
             raise ValueError(msg)

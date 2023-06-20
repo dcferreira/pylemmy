@@ -12,5 +12,6 @@ repos:
     rev: 'v1.3.0'
     hooks:
       - id: mypy
+        entry: mypy pylemmy tests
         additional_dependencies: [types-requests, pydantic, pytest]
-        files: 'pylemmy tests'
+        pass_filenames: false

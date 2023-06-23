@@ -28,6 +28,7 @@ dependencies = [
     "pydantic>=1.7",
     "requests>=2.18",
     "loguru>=0.3",
+    "aiostream~=0.4.5",
 ]
 
 [project.urls]
@@ -184,3 +185,9 @@ exclude_lines = [
 addopts = """
 --docker-compose=tests/integration/docker-compose.yml \
 --docker-compose-remove-volumes"""
+
+[[tool.mypy.overrides]]
+module = [
+    "aiostream",
+]
+ignore_missing_imports = true

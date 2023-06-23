@@ -204,7 +204,7 @@ class MultiCommunityStream:
         A simple example where we want to print the content of each comment.
 
             def process_content(elem: Union[Post, Comment]):
-                print(elem.comment_view.comment.content
+                print(elem.comment_view.comment.content)
 
             multi_stream = lemmy.multi_communities_stream(["community1", "community2"])
             multi_stream.content_apply(process_content)
@@ -229,7 +229,7 @@ class MultiCommunityStream:
                 if isinstance(Post, elem):
                     print(elem.post_view.post.name)
                 elif isinstance(Comment, elem):
-                    print(elem.comment_view.comment.content
+                    print(elem.comment_view.comment.content)
 
             multi_stream = lemmy.multi_communities_stream(["community1", "community2"])
             multi_stream.content_apply(process_content)

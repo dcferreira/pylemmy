@@ -61,6 +61,7 @@ cov = [
 ]
 typing = ["mypy {args:.}"]
 integration = "pytest tests/integration"
+unit = "pytest tests/unit"
 
 [[tool.hatch.envs.all.matrix]]
 python = ["3.7", "3.8", "3.9", "3.10", "3.11"]

@@ -55,6 +55,27 @@ class Post:
             self.lemmy, parsed_result.comment_view, post=self, community=self._community
         )
 
+    def create_post_report(self, reason: str, **kwargs) -> Comment:
+        """Create a new Report about this Post.
+
+        :param reason: Content of the comment.
+        :param kwargs: See optional arguments in [PostReport](
+        https://join-lemmy.org/api/interfaces/PostReport.html).
+        """
+        payload = api.post.CreatePostReport(
+            auth=self.lemmy.get_token(),
+            post_id=self.post_view.post.id,
+            reason=reason,
+            **kwargs,
+        )
+        result = self.lemmy.post_request(LemmyAPI.CreatePostReport, params=payload)
+        # parsed_result = api.comment.CommentResponse(**result)
+        pass
+
+        # return Comment(
+        #     self.lemmy, parsed_result.comment_view, post=self, community=self._community
+        # )
+
     def get_comments(self, **kwargs) -> List[Comment]:
         """Get Comments under this Post.
 

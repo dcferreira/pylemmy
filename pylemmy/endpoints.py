@@ -15,3 +15,4 @@ class LemmyAPI(Enum):
     GetSite = base_api_path + "site"
     GetPosts = base_api_path + "post/list"
     ListCommunities = base_api_path + "community/list"
+    CreatePostReport = base_api_path + "post/report"

@@ -103,3 +103,8 @@ class GetPosts(BaseApiModel):
 
 class GetPostsResponse(BaseApiModel):
     posts: List[PostView]
+
+class CreatePostReport(BaseApiModel):
+    auth: str
+    post_id: int
+    reason: str

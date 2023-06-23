@@ -1,12 +1,14 @@
 """Implements the Community class."""
-from typing import List
+from typing import Any, Callable, Iterable, List, Union
+
+from mypy_extensions import KwArg
 
 import pylemmy
 from pylemmy import api
 from pylemmy.endpoints import LemmyAPI
 from pylemmy.models.comment import Comment
 from pylemmy.models.post import Post
-from pylemmy.utils import stream_generator
+from pylemmy.utils import stream_apply, stream_generator
 
 
 class Community:
@@ -109,7 +111,7 @@ class CommunityStream:
     """Helper class to stream content from a specific community.
 
     This class shouldn't be directly initialized, but rather accessed through
-    Community.
+    [Community][pylemmy.community.Community].
 
     Example:
 
@@ -128,7 +130,7 @@ class CommunityStream:
     def get_posts(self, **kwargs):
         """Get a stream of Posts in the Community.
 
-        :param kwargs: See the arguments in
+        :param kwargs: See the optional arguments in
         [stream_generator][pylemmy.utils.stream_generator].
         """
         return stream_generator(
@@ -140,11 +142,119 @@ class CommunityStream:
     def get_comments(self, **kwargs):
         """Get a stream of Comments in the Community.
 
-        :param kwargs: See the arguments in
+        :param kwargs: See the optional arguments in
         [stream_generator][pylemmy.utils.stream_generator].
         """
         return stream_generator(
             self.community.get_comments,
             lambda x: str(x.comment_view.comment.ap_id),
+            **kwargs,
+        )
+
+
+class MultiCommunityStream:
+    """Helper class to stream content from multiple communities.
+
+    This class shouldn't be directly initialized, but rather accessed through
+    [Lemmy][pylemmy.lemmy.Lemmy].
+
+    Example:
+    A simple example where we want to print the content of each post.
+
+        def process_content(elem: Union[Post, Comment]):
+                print(elem.post_view.post.name)
+
+        multi_stream = lemmy.multi_communities_stream(["community1", "community2"])
+        multi_stream.content_apply(process_content)
+    """
+
+    def __init__(self, communities: List[Community]):
+        """Initializer for MultiCommunityStream.
+
+        :param communities: A list of communities to monitor.
+        """
+        self.communities = communities
+
+    def posts_apply(self, callback: Callable[[Post], Any], **kwargs):
+        """Apply a callback function to a stream of Posts in the Communities.
+
+        Example:
+        A simple example where we want to print the content of each post.
+
+            def process_content(elem: Union[Post, Comment]):
+                print(elem.post_view.post.name)
+
+            multi_stream = lemmy.multi_communities_stream(["community1", "community2"])
+            multi_stream.content_apply(process_content)
+
+        :param callback: Function that will be called for each Post.
+        :param kwargs: See the optional arguments in
+        [stream_generator][pylemmy.utils.stream_generator].
+        """
+        results_fns = [c.get_posts for c in self.communities]
+        unique_keys_fns = [lambda x: str(x.post_view.post.ap_id)] * len(
+            self.communities
+        )
+        stream_apply(results_fns, unique_keys_fns, callback, **kwargs)
+
+    def comments_apply(self, callback: Callable[[Comment], Any], **kwargs):
+        """Apply a callback function to a stream of Comments in the Communities.
+
+        Example:
+        A simple example where we want to print the content of each comment.
+
+            def process_content(elem: Union[Post, Comment]):
+                print(elem.comment_view.comment.content)
+
+            multi_stream = lemmy.multi_communities_stream(["community1", "community2"])
+            multi_stream.content_apply(process_content)
+
+        :param callback: Function that will be called for each Comment.
+        :param kwargs: See the optional arguments in
+        [stream_generator][pylemmy.utils.stream_generator].
+        """
+        results_fns = [c.get_comments for c in self.communities]
+        unique_keys_fns = [lambda x: str(x.comment_view.comment.ap_id)] * len(
+            self.communities
+        )
+        stream_apply(results_fns, unique_keys_fns, callback, **kwargs)
+
+    def content_apply(self, callback: Callable[[Union[Comment, Post]], Any], **kwargs):
+        """Apply a callback function to a stream of Comments and Posts.
+
+        Example:
+        A simple example where we want to print the content of each post/comment.
+
+            def process_content(elem: Union[Post, Comment]):
+                if isinstance(Post, elem):
+                    print(elem.post_view.post.name)
+                elif isinstance(Comment, elem):
+                    print(elem.comment_view.comment.content)
+
+            multi_stream = lemmy.multi_communities_stream(["community1", "community2"])
+            multi_stream.content_apply(process_content)
+
+
+        :param callback: Function that will be called for each Comment/Post.
+        :param kwargs: See the optional arguments in
+        [stream_generator][pylemmy.utils.stream_generator].
+        """
+        posts_fns: List[Callable[[KwArg(Any)], Iterable[Union[Post, Comment]]]] = [
+            c.get_posts for c in self.communities
+        ]
+        comments_fns: List[Callable[[KwArg(Any)], Iterable[Union[Post, Comment]]]] = [
+            c.get_comments for c in self.communities
+        ]
+
+        posts_unique_keys_fns = [lambda x: "post_" + str(x.post_view.post.ap_id)] * len(
+            self.communities
+        )
+        comments_unique_keys_fns = [
+            lambda x: "comment_" + str(x.comment_view.comment.ap_id)
+        ] * len(self.communities)
+        stream_apply(
+            posts_fns + comments_fns,
+            posts_unique_keys_fns + comments_unique_keys_fns,
+            callback,
             **kwargs,
         )

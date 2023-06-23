@@ -28,6 +28,7 @@ dependencies = [
     "pydantic>=1.7",
     "requests>=2.18",
     "loguru>=0.3",
+    "aiostream~=0.4.5",
 ]
 
 [project.urls]
@@ -60,6 +61,7 @@ cov = [
 ]
 typing = ["mypy {args:.}"]
 integration = "pytest tests/integration"
+unit = "pytest tests/unit"
 
 [[tool.hatch.envs.all.matrix]]
 python = ["3.7", "3.8", "3.9", "3.10", "3.11"]
@@ -184,3 +186,9 @@ exclude_lines = [
 addopts = """
 --docker-compose=tests/integration/docker-compose.yml \
 --docker-compose-remove-volumes"""
+
+[[tool.mypy.overrides]]
+module = [
+    "aiostream",
+]
+ignore_missing_imports = true

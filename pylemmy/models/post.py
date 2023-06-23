@@ -73,3 +73,16 @@ class Post:
             Comment(self.lemmy, comment, post=self, community=self._community)
             for comment in parsed_result.comments
         ]
+
+    def create_report(self, reason: str) -> "api.post.PostReportView":
+        """Report this post.
+
+        :param reason: A reason for the report.
+        """
+        payload = api.post.CreatePostReport(
+            auth=self.lemmy.get_token(), post_id=self.post_view.post.id, reason=reason
+        )
+        result = self.lemmy.post_request(LemmyAPI.CreatePostReport, params=payload)
+        parsed_result = api.post.PostReportResponse(**result)
+
+        return parsed_result.post_report_view

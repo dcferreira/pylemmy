@@ -7,18 +7,19 @@ from typing import (
     Callable,
     Generator,
     Iterable,
-    List,
     Optional,
+    Sequence,
     TypeVar,
 )
 
 from aiostream import stream
+from mypy_extensions import KwArg
 
 T = TypeVar("T")
 
 
 def stream_generator(
-    results_fn: Callable[..., Iterable[T]],
+    results_fn: Callable[[KwArg(Any)], Iterable[T]],
     unique_key_fn: Callable[[T], str],
     *,
     filter_fn: Callable[[T], bool] = lambda _: True,
@@ -47,9 +48,9 @@ def stream_generator(
 
     wait_time = min_wait_time
     while True:
+        # noinspection DuplicatedCode
         first_key = last_key
         results = results_fn(**function_kwargs)
-        # noinspection DuplicatedCode
         for r in filter(filter_fn, results):
             unique_key = unique_key_fn(r)
             if unique_key not in found_keys:
@@ -69,7 +70,7 @@ def stream_generator(
 
 
 async def async_stream_generator(
-    results_fn: Callable[..., Iterable[T]],
+    results_fn: Callable[[KwArg(Any)], Iterable[T]],
     unique_key_fn: Callable[[T], str],
     *,
     filter_fn: Callable[[T], bool] = lambda _: True,
@@ -98,9 +99,9 @@ async def async_stream_generator(
 
     wait_time = min_wait_time
     while True:
+        # noinspection DuplicatedCode
         first_key = last_key
         results = results_fn(**function_kwargs)
-        # noinspection DuplicatedCode
         for r in filter(filter_fn, results):
             unique_key = unique_key_fn(r)
             if unique_key not in found_keys:
@@ -120,8 +121,8 @@ async def async_stream_generator(
 
 
 async def _merge_streams(
-    results_fns: List[Callable[..., Iterable[T]]],
-    unique_key_fns: List[Callable[[T], str]],
+    results_fns: Sequence[Callable[[KwArg(Any)], Iterable[T]]],
+    unique_key_fns: Sequence[Callable[[T], str]],
     callback: Callable[[T], Any],
     *,
     filter_fn: Callable[[T], bool] = lambda _: True,
@@ -131,7 +132,7 @@ async def _merge_streams(
     **function_kwargs: Any,
 ):
     if limit is not None and limit <= 0:
-        return
+        return None
     streams = [
         async_stream_generator(
             gen,
@@ -156,8 +157,8 @@ async def _merge_streams(
 
 
 def stream_apply(
-    generator_fns: List[Callable[..., Iterable[T]]],
-    unique_key_fns: List[Callable[[T], str]],
+    results_fns: Sequence[Callable[[KwArg(Any)], Iterable[T]]],
+    unique_key_fns: Sequence[Callable[[T], str]],
     callback: Callable[[T], Any],
     *,
     filter_fn: Callable[[T], bool] = lambda _: True,
@@ -168,7 +169,7 @@ def stream_apply(
 ):
     """Helper function to generate streams.
 
-    :param generator_fns: A list of functions to call repeatedly, each of them
+    :param results_fns: A list of functions to call repeatedly, each of them
     outputting a list of objects.
     :param unique_key_fns: A list of functions (same length as `function`), where
     each of them takes an object and outputs a unique id.
@@ -183,15 +184,15 @@ def stream_apply(
     again.
     :param function_kwargs: Keyword parameters that are passed to the function.
     """
-    if len(generator_fns) != len(unique_key_fns):
+    if len(results_fns) != len(unique_key_fns):
         msg = (
             f"The lengths of `generator_fns` and `unique_key_fns` need to be the same. "
-            f"Got {len(generator_fns)} and {len(unique_key_fns)}."
+            f"Got {len(results_fns)} and {len(unique_key_fns)}."
         )
         raise ValueError(msg)
     asyncio.run(
         _merge_streams(
-            generator_fns,
+            results_fns,
             unique_key_fns,
             callback,
             filter_fn=filter_fn,

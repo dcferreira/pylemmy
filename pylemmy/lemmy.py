@@ -1,6 +1,6 @@
 """Implements the Lemmy class."""
 import urllib.parse
-from typing import List, Optional, Union
+from typing import Iterable, List, Optional, Union
 
 import requests
 from pydantic import AnyUrl, parse_obj_as
@@ -8,7 +8,7 @@ from pydantic import AnyUrl, parse_obj_as
 from pylemmy import api
 from pylemmy.api.utils import BaseApiModel
 from pylemmy.endpoints import LemmyAPI
-from pylemmy.models.community import Community
+from pylemmy.models.community import Community, MultiCommunityStream
 from pylemmy.models.post import Post
 
 
@@ -253,3 +253,29 @@ class Lemmy:
             timeout=self.request_timeout,
         )
         return response.json()
+
+    def multi_communities_stream(
+        self, communities: Iterable[Union[int, str, Community]]
+    ) -> MultiCommunityStream:
+        """Get streams for multiple communities.
+
+        Example:
+        A simple example where we want to print the content of each post/comment.
+
+            def process_content(elem: Union[Post, Comment]):
+                if isinstance(Post, elem):
+                    print(elem.post_view.post.name)
+                elif isinstance(Comment, elem):
+                    print(elem.comment_view.comment.content
+
+            multi_stream = lemmy.multi_communities_stream(["community1", "community2"])
+            multi_stream.content_apply(process_content)
+
+        :param communities: An iterable of community ids, names or instances of
+        [Community][pylemmy.community.Community].
+        """
+        communities_list = (
+            x if isinstance(x, Community) else self.get_community(x)
+            for x in communities
+        )
+        return MultiCommunityStream(list(communities_list))

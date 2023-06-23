@@ -20,4 +20,4 @@ class LemmyAPI(Enum):
     ListPostReports = base_api_path + "post/report/list"
     ListCommentReports = base_api_path + "comment/report/list"
     ResolvePostReport = base_api_path + "post/report/resolve"
-    CommentPostReport = base_api_path + "comment/report/resolve"
+    ResolveCommentReport = base_api_path + "comment/report/resolve"

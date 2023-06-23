@@ -236,3 +236,20 @@ class Lemmy:
             timeout=self.request_timeout,
         )
         return response.json()
+
+    def put_request(
+        self,
+        path: LemmyAPI,
+        params: Optional[BaseApiModel] = None,
+    ):
+        """Send a PUT request to the desired path.
+
+        :param path: A Lemmy endpoint.
+        :param params: Parameters to send with the request (in the URL).
+        """
+        response = self.session.put(
+            self._get_url(path),
+            params=params.dict() if params is not None else {},
+            timeout=self.request_timeout,
+        )
+        return response.json()

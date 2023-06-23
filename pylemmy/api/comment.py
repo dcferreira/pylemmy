@@ -86,3 +86,60 @@ class GetComments(BaseApiModel):
 
 class GetCommentsResponse(BaseApiModel):
     comments: List[CommentView]
+
+
+class CommentReport(BaseApiModel):
+    comment_id: int
+    creator_id: int
+    id: int
+    original_comment_text: str
+    published: str
+    reason: str
+    resolved: bool
+    resolver_id: Optional[int]
+    updated: Optional[str]
+
+
+class CommentReportView(BaseApiModel):
+    comment: Comment
+    comment_creator: Person
+    comment_report: CommentReport
+    community: Community
+    counts: CommentAggregates
+    creator: Person
+    creator_banned_from_community: bool
+    my_vote: Optional[int]
+    post: Post
+    resolver: Person
+
+
+class CreateCommentReport(BaseApiModel):
+    auth: str
+    comment_id: int
+    reason: str
+
+
+class CommentReportResponse(BaseApiModel):
+    comment_report_view: CommentReportView
+
+
+class ResolveCommentReport(BaseApiModel):
+    auth: str
+    report_id: int
+    resolved: bool
+
+
+class CommentResolveResponse(BaseApiModel):
+    comment_report_view: CommentReportView
+
+
+class ListCommentReports(BaseApiModel):
+    auth: str
+    community_id: Optional[int]
+    limit: Optional[int]
+    page: Optional[int]
+    unresolved_only: Optional[bool]
+
+
+class ListCommentReportsResponse(BaseApiModel):
+    comment_reports: List[CommentReportView]

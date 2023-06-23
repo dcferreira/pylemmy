@@ -16,5 +16,8 @@ class LemmyAPI(Enum):
     GetPosts = base_api_path + "post/list"
     ListCommunities = base_api_path + "community/list"
     CreatePostReport = base_api_path + "post/report"
+    CreateCommentReport = base_api_path + "comment/report"
     ListPostReports = base_api_path + "post/report/list"
+    ListCommentReports = base_api_path + "comment/report/list"
     ResolvePostReport = base_api_path + "post/report/resolve"
+    CommentPostReport = base_api_path + "comment/report/resolve"

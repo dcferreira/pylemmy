@@ -3,6 +3,7 @@ from typing import Optional
 
 import pylemmy
 from pylemmy import api
+from pylemmy.endpoints import LemmyAPI
 
 
 class Comment:
@@ -42,3 +43,18 @@ class Comment:
         if self._community is None:
             self._community = self.lemmy.get_community(self.comment_view.community.id)
         return self._community
+
+    def create_report(self, reason: str) -> api.comment.CommentReportView:
+        """Report this comment.
+
+        :param reason: A reason for the report.
+        """
+        payload = api.comment.CreateCommentReport(
+            auth=self.lemmy.get_token(),
+            comment_id=self.comment_view.post.id,
+            reason=reason,
+        )
+        result = self.lemmy.post_request(LemmyAPI.CreateCommentReport, params=payload)
+        parsed_result = api.comment.CommentReportResponse(**result)
+
+        return parsed_result.comment_report_view

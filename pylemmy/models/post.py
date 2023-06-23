@@ -74,7 +74,7 @@ class Post:
             for comment in parsed_result.comments
         ]
 
-    def create_report(self, reason: str) -> "api.post.PostReportView":
+    def create_report(self, reason: str) -> api.post.PostReportView:
         """Report this post.
 
         :param reason: A reason for the report.

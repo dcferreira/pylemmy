@@ -191,6 +191,18 @@ class Lemmy:
 
         return parsed_result.post_reports
 
+    def list_comment_reports(self, **kwargs) -> List[api.comment.CommentReportView]:
+        """List comment reports.
+
+        :param kwargs: See optional arguments in [ListCommentReports](
+        https://join-lemmy.org/api/interfaces/ListCommentReports.html).
+        """
+        payload = api.comment.ListCommentReports(auth=self.get_token(), **kwargs)
+        result = self.get_request(LemmyAPI.ListPostReports, params=payload)
+        parsed_result = api.comment.ListCommentReportsResponse(**result)
+
+        return parsed_result.comment_reports
+
     def post_request(
         self,
         path: LemmyAPI,

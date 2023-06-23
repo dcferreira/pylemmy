@@ -82,6 +82,14 @@ class Community:
         """
         return self.lemmy.list_post_reports(community_id=self.safe.id, **kwargs)
 
+    def list_comment_reports(self, **kwargs) -> List[api.comment.CommentReportView]:
+        """List comment reports in this community.
+
+        :param kwargs: See optional arguments in [ListCommentReports](
+        https://join-lemmy.org/api/interfaces/ListCommentReports.html).
+        """
+        return self.lemmy.list_comment_reports(community_id=self.safe.id, **kwargs)
+
     @property
     def stream(self) -> "CommunityStream":
         """Returns a stream of content.

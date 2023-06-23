@@ -33,7 +33,7 @@ def test_stream_apply():
         return switches2
 
     def callback_flip(x):
-        x.callback_flip()
+        x.flip()
 
     stream_apply(
         [generator1, generator2],

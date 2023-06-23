@@ -103,3 +103,61 @@ class GetPosts(BaseApiModel):
 
 class GetPostsResponse(BaseApiModel):
     posts: List[PostView]
+
+
+class PostReport(BaseApiModel):
+    id: int
+    creator_id: int
+    post_id: int
+    original_post_name: str
+    original_post_url: Optional[str]
+    original_post_body: Optional[str]
+    reason: str
+    resolved: bool
+    resolved_id: Optional[int]
+    published: str
+    updated: Optional[str]
+
+
+class PostReportView(BaseApiModel):
+    post_report: PostReport
+    post: Post
+    community: int
+    creator: Person
+    post_creator: Person
+    creator_banned_from_community: bool
+    my_vote: Optional[int]
+    counts: PostAggregates
+    resolve: Optional[Person]
+
+
+class CreatePostReport(BaseApiModel):
+    auth: str
+    post_id: int
+    reason: str
+
+
+class PostReportResponse(BaseApiModel):
+    post_report_view: PostReportView
+
+
+class ResolvePostReport(BaseApiModel):
+    auth: str
+    report_id: int
+    resolved: bool
+
+
+class PostResolveResponse(BaseApiModel):
+    post_report_view: PostReportView
+
+
+class ListPostReports(BaseApiModel):
+    auth: str
+    page: int
+    limit: int
+    unresolved_only: Optional[bool]
+    community_id: Optional[int]
+
+
+class ListPostReportsResponse(BaseApiModel):
+    post_reports: List[PostReportView]

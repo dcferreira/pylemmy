@@ -179,6 +179,30 @@ class Lemmy:
 
         return Post(self, parsed_result.post_view)
 
+    def list_post_reports(self, **kwargs) -> List[api.post.PostReportView]:
+        """List post reports.
+
+        :param kwargs: See optional arguments in [ListPostReports](
+        https://join-lemmy.org/api/interfaces/ListPostReports.html).
+        """
+        payload = api.post.ListPostReports(auth=self.get_token(), **kwargs)
+        result = self.get_request(LemmyAPI.ListPostReports, params=payload)
+        parsed_result = api.post.ListPostReportsResponse(**result)
+
+        return parsed_result.post_reports
+
+    def list_comment_reports(self, **kwargs) -> List[api.comment.CommentReportView]:
+        """List comment reports.
+
+        :param kwargs: See optional arguments in [ListCommentReports](
+        https://join-lemmy.org/api/interfaces/ListCommentReports.html).
+        """
+        payload = api.comment.ListCommentReports(auth=self.get_token(), **kwargs)
+        result = self.get_request(LemmyAPI.ListPostReports, params=payload)
+        parsed_result = api.comment.ListCommentReportsResponse(**result)
+
+        return parsed_result.comment_reports
+
     def post_request(
         self,
         path: LemmyAPI,
@@ -207,6 +231,23 @@ class Lemmy:
         :param params: Parameters to send with the request (in the URL).
         """
         response = self.session.get(
+            self._get_url(path),
+            params=params.dict() if params is not None else {},
+            timeout=self.request_timeout,
+        )
+        return response.json()
+
+    def put_request(
+        self,
+        path: LemmyAPI,
+        params: Optional[BaseApiModel] = None,
+    ):
+        """Send a PUT request to the desired path.
+
+        :param path: A Lemmy endpoint.
+        :param params: Parameters to send with the request (in the URL).
+        """
+        response = self.session.put(
             self._get_url(path),
             params=params.dict() if params is not None else {},
             timeout=self.request_timeout,

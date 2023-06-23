@@ -74,6 +74,22 @@ class Community:
 
         return [Comment(self.lemmy, comment) for comment in parsed_result.comments]
 
+    def list_post_reports(self, **kwargs) -> List[api.post.PostReportView]:
+        """List post reports in this community.
+
+        :param kwargs: See optional arguments in [ListPostReports](
+        https://join-lemmy.org/api/interfaces/ListPostReports.html).
+        """
+        return self.lemmy.list_post_reports(community_id=self.safe.id, **kwargs)
+
+    def list_comment_reports(self, **kwargs) -> List[api.comment.CommentReportView]:
+        """List comment reports in this community.
+
+        :param kwargs: See optional arguments in [ListCommentReports](
+        https://join-lemmy.org/api/interfaces/ListCommentReports.html).
+        """
+        return self.lemmy.list_comment_reports(community_id=self.safe.id, **kwargs)
+
     @property
     def stream(self) -> "CommunityStream":
         """Returns a stream of content.

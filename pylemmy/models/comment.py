@@ -89,7 +89,7 @@ class Comment:
         """
         payload = api.comment.CreateCommentReport(
             auth=self.lemmy.get_token(),
-            comment_id=self.comment_view.post.id,
+            comment_id=self.comment_view.comment.id,
             reason=reason,
         )
         result = self.lemmy.post_request(LemmyAPI.CreateCommentReport, params=payload)

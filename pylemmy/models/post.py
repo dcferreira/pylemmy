@@ -119,8 +119,12 @@ class Post:
             auth=self.lemmy.get_token(), post_id=self.post_view.post.id, reason=reason
         )
         result = self.lemmy.post_request(LemmyAPI.CreatePostReport, params=payload)
-        parsed_result = api.post.PostReportResponse(**result)
 
-        return PostReport(
-            lemmy=self.lemmy, report=parsed_result.post_report_view, post=self
-        )
+        if not 'error' in result:
+            parsed_result = api.post.PostReportResponse(**result)
+            return PostReport(
+                lemmy=self.lemmy, report=parsed_result.post_report_view, post=self)
+        else:
+            return PostReport(
+                lemmy=self.lemmy, report=result, post=self)
+

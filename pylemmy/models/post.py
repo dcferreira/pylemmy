@@ -125,6 +125,5 @@ class Post:
             return PostReport(
                 lemmy=self.lemmy, report=parsed_result.post_report_view, post=self)
         else:
-            return PostReport(
-                lemmy=self.lemmy, report=result, post=self)
+            raise result['error']
 

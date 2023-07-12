@@ -99,5 +99,4 @@ class Comment:
             return CommentReport(
                 lemmy=self.lemmy, report=parsed_result.comment_report_view, comment=self)
         else:
-            return CommentReport(
-                lemmy=self.lemmy, report=result, comment=self)
+            raise result['error']

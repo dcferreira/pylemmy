@@ -110,7 +110,7 @@ class CommentReportView(BaseApiModel):
     creator_banned_from_community: bool
     my_vote: Optional[int]
     post: Post
-    resolver: Person
+    resolver: Optional[Person]
 
 
 class CreateCommentReport(BaseApiModel):

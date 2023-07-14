@@ -122,13 +122,13 @@ class PostReport(BaseApiModel):
 class PostReportView(BaseApiModel):
     post_report: PostReport
     post: Post
-    community: int
+    community: Community
     creator: Person
     post_creator: Person
     creator_banned_from_community: bool
     my_vote: Optional[int]
     counts: PostAggregates
-    resolve: Optional[Person]
+    resolver: Optional[Person]
 
 
 class CreatePostReport(BaseApiModel):

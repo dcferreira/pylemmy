@@ -93,8 +93,6 @@ class Comment:
             reason=reason,
         )
         result = self.lemmy.post_request(LemmyAPI.CreateCommentReport, params=payload)
-        parsed_result = api.comment.CommentReportResponse(**result)
 
-        return CommentReport(
-            lemmy=self.lemmy, report=parsed_result.comment_report_view, comment=self
-        )
+        parsed_result = api.comment.CommentReportResponse(**result)
+        return CommentReport(lemmy=self.lemmy, report=parsed_result.comment_report_view, comment=self)

@@ -218,6 +218,7 @@ class Lemmy:
             json=params.dict() if params is not None else {},
             timeout=self.request_timeout,
         )
+        response.raise_for_status()
         return response.json()
 
     def get_request(
@@ -235,6 +236,7 @@ class Lemmy:
             params=params.dict() if params is not None else {},
             timeout=self.request_timeout,
         )
+        response.raise_for_status()
         return response.json()
 
     def put_request(

@@ -116,14 +116,12 @@ class Post:
         :param reason: A reason for the report.
         """
         payload = api.post.CreatePostReport(
-            auth=self.lemmy.get_token(), post_id=self.post_view.post.id, reason=reason
+            auth=self.lemmy.get_token(),
+            post_id=self.post_view.post.id,
+            reason=reason
         )
         result = self.lemmy.post_request(LemmyAPI.CreatePostReport, params=payload)
 
-        if not 'error' in result:
-            parsed_result = api.post.PostReportResponse(**result)
-            return PostReport(
-                lemmy=self.lemmy, report=parsed_result.post_report_view, post=self)
-        else:
-            raise result['error']
+        parsed_result = api.post.PostReportResponse(**result)
+        return PostReport(lemmy=self.lemmy, report=parsed_result.post_report_view, post=self)
 

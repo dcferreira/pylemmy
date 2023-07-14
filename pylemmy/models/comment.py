@@ -94,9 +94,5 @@ class Comment:
         )
         result = self.lemmy.post_request(LemmyAPI.CreateCommentReport, params=payload)
 
-        if not 'error' in result:
-            parsed_result = api.comment.CommentReportResponse(**result)
-            return CommentReport(
-                lemmy=self.lemmy, report=parsed_result.comment_report_view, comment=self)
-        else:
-            raise result['error']
+        parsed_result = api.comment.CommentReportResponse(**result)
+        return CommentReport(lemmy=self.lemmy, report=parsed_result.comment_report_view, comment=self)

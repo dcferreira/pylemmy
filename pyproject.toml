@@ -25,7 +25,7 @@ classifiers = [
     "Programming Language :: Python :: Implementation :: PyPy",
 ]
 dependencies = [
-    "pydantic>=1.7",
+    "pydantic>=1.8,<2.0",
     "requests>=2.18",
     "loguru>=0.3",
     "aiostream~=0.4.5",

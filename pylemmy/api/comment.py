@@ -69,6 +69,13 @@ class CommentResponse(BaseApiModel):
     recipient_ids: List[int]
     form_id: Optional[str]
 
+class GetComment(BaseApiModel):
+    auth: Optional[str]
+    id: int
+
+class GetCommentResponse(BaseApiModel):
+    comment_view: CommentView
+    recipient_ids: List[Optional[int]]
 
 class GetComments(BaseApiModel):
     auth: Optional[str]

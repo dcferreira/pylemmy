@@ -12,6 +12,7 @@ from pylemmy.models.comment import Comment
 from pylemmy.models.community import Community, MultiCommunityStream
 from pylemmy.models.post import Post
 
+
 class Lemmy:
     """The Lemmy class provides the main entrypoint for pylemmy, and Lemmy's API.
 
@@ -156,9 +157,7 @@ class Lemmy:
 
         return [Community(self, view) for view in parsed_result.communities]
 
-    def get_comment(
-        self, comment_id: Optional[int] = None
-    ) -> Comment:
+    def get_comment(self, comment_id: Optional[int] = None) -> Comment:
         """Get a comment from its id.
 
         :param comment_id: Id of the comment.

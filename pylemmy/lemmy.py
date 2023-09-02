@@ -8,6 +8,7 @@ from pydantic import AnyUrl, parse_obj_as
 from pylemmy import api
 from pylemmy.api.utils import BaseApiModel
 from pylemmy.endpoints import LemmyAPI
+from pylemmy.models.comment import Comment
 from pylemmy.models.community import Community, MultiCommunityStream
 from pylemmy.models.post import Post
 
@@ -155,6 +156,24 @@ class Lemmy:
         parsed_result = api.community.ListCommunitiesResponse(**result)
 
         return [Community(self, view) for view in parsed_result.communities]
+
+    def get_comment(self, comment_id: Optional[int] = None) -> Comment:
+        """Get a comment from its id.
+
+        :param comment_id: Id of the comment.
+        """
+        if comment_id is not None:
+            payload = api.comment.GetComment(
+                auth=self.get_token_optional(), id=comment_id
+            )
+        else:
+            msg = "Need to give a comment id."
+            raise ValueError(msg)
+
+        result = self.get_request(LemmyAPI.Comment, params=payload)
+        parsed_result = api.comment.GetCommentResponse(**result)
+
+        return Comment(self, parsed_result.comment_view)
 
     def get_post(
         self, *, post_id: Optional[int] = None, comment_id: Optional[int] = None

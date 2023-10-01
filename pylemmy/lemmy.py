@@ -322,4 +322,3 @@ class Lemmy:
             for x in communities
         )
         return MultiCommunityStream(list(communities_list))
-        

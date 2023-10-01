@@ -1,5 +1,6 @@
 """Implements the Person class."""
 
+import pylemmy
 from pylemmy import api
 
 
@@ -17,3 +18,4 @@ class Person:
         self.lemmy = lemmy
         self.counts = person.counts
         self.safe = person.person
+        

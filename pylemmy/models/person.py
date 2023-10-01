@@ -5,8 +5,7 @@ from pylemmy import api
 
 
 class Person:
-    """A class for Persons.
-    """
+    """A class for Persons."""
 
     def __init__(self, lemmy: "pylemmy.Lemmy", person: api.person.PersonView):
         """Initialize a Person instance.

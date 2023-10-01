@@ -183,10 +183,10 @@ class Lemmy:
         :param username: the username of the user
         """
         if person_id is not None:
-            payload = api.person.GetPersonDetails(auth=self.get_token_optional(), 
+            payload = api.person.GetPersonDetails(auth=self.get_token_optional(),
                                                   person_id=person_id)
         elif username is not None:
-            payload = api.person.GetPersonDetails(auth=self.get_token_optional(), 
+            payload = api.person.GetPersonDetails(auth=self.get_token_optional(),
                                                   username=username)
         else:
             msg = "Need to give a person_id or username."
@@ -322,3 +322,4 @@ class Lemmy:
             for x in communities
         )
         return MultiCommunityStream(list(communities_list))
+        

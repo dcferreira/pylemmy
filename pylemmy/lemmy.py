@@ -9,8 +9,8 @@ from pylemmy import api
 from pylemmy.api.utils import BaseApiModel
 from pylemmy.endpoints import LemmyAPI
 from pylemmy.models.comment import Comment
-from pylemmy.models.person import Person
 from pylemmy.models.community import Community, MultiCommunityStream
+from pylemmy.models.person import Person
 from pylemmy.models.post import Post
 
 
@@ -183,9 +183,11 @@ class Lemmy:
         :param username: the username of the user
         """
         if person_id is not None:
-            payload = api.person.GetPersonDetails(auth=self.get_token_optional(), person_id=person_id)
+            payload = api.person.GetPersonDetails(auth=self.get_token_optional(), 
+                                                  person_id=person_id)
         elif username is not None:
-            payload = api.person.GetPersonDetails(auth=self.get_token_optional(), username=username)
+            payload = api.person.GetPersonDetails(auth=self.get_token_optional(), 
+                                                  username=username)
         else:
             msg = "Need to give a person_id or username."
             raise ValueError(msg)

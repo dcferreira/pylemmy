@@ -9,6 +9,7 @@ from pylemmy import api
 from pylemmy.api.utils import BaseApiModel
 from pylemmy.endpoints import LemmyAPI
 from pylemmy.models.comment import Comment
+from pylemmy.models.person import Person
 from pylemmy.models.community import Community, MultiCommunityStream
 from pylemmy.models.post import Post
 
@@ -174,6 +175,25 @@ class Lemmy:
         parsed_result = api.comment.GetCommentResponse(**result)
 
         return Comment(self, parsed_result.comment_view)
+
+    def get_person_details(self, person_id, username) -> Person:
+        """Get a user from its id or username.
+
+        :param person_id: Id of the user.
+        :param username: the username of the user
+        """
+        if person_id is not None:
+            payload = api.person.GetPersonDetails(auth=self.get_token_optional(), person_id=person_id)
+        elif username is not None:
+            payload = api.person.GetPersonDetails(auth=self.get_token_optional(), username=username)
+        else:
+            msg = "Need to give a person_id or username."
+            raise ValueError(msg)
+
+        result = self.get_request(LemmyAPI.Person, params=payload)
+        parsed_result = api.person.GetPersonDetailsResponse(**result)
+
+        return Person(self, parsed_result.person_view)
 
     def get_post(
         self, *, post_id: Optional[int] = None, comment_id: Optional[int] = None

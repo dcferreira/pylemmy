@@ -21,3 +21,4 @@ class LemmyAPI(Enum):
     ListCommentReports = base_api_path + "comment/report/list"
     ResolvePostReport = base_api_path + "post/report/resolve"
     ResolveCommentReport = base_api_path + "comment/report/resolve"
+    Person = base_api_path + "user"

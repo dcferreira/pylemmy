@@ -6,9 +6,10 @@ from pylemmy.api.listing import SortType
 from pylemmy.api.post import PostView
 from pylemmy.api.utils import BaseApiModel
 
+
 class Person(BaseApiModel):
     actor_id: str
-    admin: Optional[bool]   # not to specification change to accept API responses
+    admin: Optional[bool]  # not to specification change to accept API responses
     # admin: bool
     avatar: Optional[str]
     ban_expires: Optional[str]
@@ -26,6 +27,7 @@ class Person(BaseApiModel):
     published: str
     updated: Optional[str]
 
+
 class PersonAggregates(BaseApiModel):
     comment_count: int
     comment_score: int
@@ -34,9 +36,11 @@ class PersonAggregates(BaseApiModel):
     post_count: int
     post_score: int
 
+
 class PersonView(BaseApiModel):
     counts: PersonAggregates
     person: Person
+
 
 class GetPersonDetails(BaseApiModel):
     community_id: Optional[int]
@@ -46,6 +50,7 @@ class GetPersonDetails(BaseApiModel):
     saved_only: Optional[bool]
     sort: Optional[SortType]
     username: Optional[str]
+
 
 class GetPersonDetailsResponse(BaseApiModel):
     comments: List[CommentView]

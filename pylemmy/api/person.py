@@ -1,10 +1,10 @@
 from typing import List, Optional
 
-from pylemmy.api.utils import BaseApiModel
 from pylemmy.api.comment import CommentView
 from pylemmy.api.community import CommunityModeratorView
-from pylemmy.api.post import PostView
 from pylemmy.api.listing import SortType
+from pylemmy.api.post import PostView
+from pylemmy.api.utils import BaseApiModel
 
 class Person(BaseApiModel):
     actor_id: str

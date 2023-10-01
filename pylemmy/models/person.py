@@ -17,4 +17,3 @@ class Person:
         self.lemmy = lemmy
         self.counts = person.counts
         self.safe = person.person
-        

@@ -1,8 +1,7 @@
 from typing import List, Optional
 
-from pylemmy.api.community1 import Community, SubscribedType
+from pylemmy.api.base import Community, Person, SubscribedType
 from pylemmy.api.listing import ListingType, SortType
-from pylemmy.api.person import Person
 from pylemmy.api.site import Site
 from pylemmy.api.utils import BaseApiModel
 

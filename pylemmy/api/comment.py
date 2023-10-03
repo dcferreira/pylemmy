@@ -1,10 +1,9 @@
 from enum import Enum
 from typing import List, Optional
 
-from pylemmy.api.community2 import Community, SubscribedType
+from pylemmy.api.base import Comment, Person, Post
+from pylemmy.api.community import Community, SubscribedType
 from pylemmy.api.listing import ListingType
-from pylemmy.api.person import Person
-from pylemmy.api.post import Post
 from pylemmy.api.utils import BaseApiModel
 
 
@@ -22,22 +21,6 @@ class CreateComment(BaseApiModel):
     language_id: Optional[int]
     form_id: Optional[str]
     auth: str
-
-
-class Comment(BaseApiModel):
-    id: int
-    creator_id: int
-    post_id: int
-    content: str
-    removed: bool
-    published: str
-    updated: Optional[str]
-    deleted: bool
-    ap_id: str
-    local: bool
-    path: str
-    distinguished: bool
-    language_id: int
 
 
 class CommentAggregates(BaseApiModel):

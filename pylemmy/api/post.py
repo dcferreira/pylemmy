@@ -1,13 +1,13 @@
 from typing import List, Optional
 
-from pylemmy.api.community2 import (
+from pylemmy.api.base import Person, Post
+from pylemmy.api.community import (
     Community,
     CommunityModeratorView,
     CommunityView,
     SubscribedType,
 )
 from pylemmy.api.listing import ListingType, SortType
-from pylemmy.api.person import Person
 from pylemmy.api.utils import BaseApiModel
 
 
@@ -19,30 +19,6 @@ class CreatePost(BaseApiModel):
     language_id: Optional[int]
     name: str
     nsfw: Optional[bool]
-    url: Optional[str]
-
-
-class Post(BaseApiModel):
-    ap_id: str
-    body: Optional[str]
-    community_id: int
-    creator_id: int
-    deleted: bool
-    embed_description: Optional[str]
-    embed_title: Optional[str]
-    embed_video_url: Optional[str]
-    featured_community: bool
-    featured_local: bool
-    id: int
-    language_id: int
-    local: bool
-    locked: bool
-    name: str
-    nsfw: bool
-    published: str
-    removed: bool
-    thumbnail_url: Optional[str]
-    updated: Optional[str]
     url: Optional[str]
 
 

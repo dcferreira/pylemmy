@@ -176,7 +176,7 @@ class Lemmy:
 
         return Comment(self, parsed_result.comment_view)
 
-    def get_person_details(self, person_id, username) -> Person:
+    def get_person_details(self, person_id=None, username=None) -> Person:
         """Get a user from its id or username.
 
         :param person_id: Id of the user.

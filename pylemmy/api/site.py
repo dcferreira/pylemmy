@@ -6,8 +6,8 @@ from pylemmy.api.utils import BaseApiModel
 class Site(BaseApiModel):
     actor_id: str
     banner: Optional[str]
-    description: str
-    icon: str
+    description: Optional[str]
+    icon: Optional[str]
     id: int
     inbox_url: str
     instance_id: int

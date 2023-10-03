@@ -1,8 +1,7 @@
-from enum import Enum
 from typing import List, Optional
 
+from pylemmy.api.base import Community, Person, SubscribedType
 from pylemmy.api.listing import ListingType, SortType
-from pylemmy.api.person import Person
 from pylemmy.api.site import Site
 from pylemmy.api.utils import BaseApiModel
 
@@ -13,41 +12,18 @@ class GetCommunity(BaseApiModel):
     name: Optional[str] = None
 
 
-class Community(BaseApiModel):
-    actor_id: str
-    banner: Optional[str]
-    deleted: bool
-    description: Optional[str]
-    hidden: bool
-    icon: Optional[str]
-    id: int
-    instance_id: int
-    local: bool
-    name: str
-    nsfw: bool
-    posting_restricted_to_mods: bool
-    published: str
-    removed: bool
-    title: str
-    updated: Optional[str]
-
-
 class CommunityAggregates(BaseApiModel):
     comments: int
     community_id: int
+    hot_rank: int
     id: int
     posts: int
+    published: str
     subscribers: int
     users_active_day: int
     users_active_half_year: int
     users_active_month: int
     users_active_week: int
-
-
-class SubscribedType(Enum):
-    NotSubscribed = "NotSubscribed"
-    Pending = "Pending"
-    Subscribed = "Subscribed"
 
 
 class CommunityView(BaseApiModel):
@@ -90,6 +66,7 @@ class ListCommunities(BaseApiModel):
     auth: Optional[str]
     limit: Optional[int]
     page: Optional[int]
+    show_nsfw: Optional[bool]
     sort: Optional[SortType]
     type_: Optional[ListingType]
 

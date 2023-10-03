@@ -1,10 +1,9 @@
 from enum import Enum
 from typing import List, Optional
 
+from pylemmy.api.base import Comment, Person, Post
 from pylemmy.api.community import Community, SubscribedType
 from pylemmy.api.listing import ListingType
-from pylemmy.api.person import Person
-from pylemmy.api.post import Post
 from pylemmy.api.utils import BaseApiModel
 
 
@@ -24,22 +23,6 @@ class CreateComment(BaseApiModel):
     auth: str
 
 
-class Comment(BaseApiModel):
-    id: int
-    creator_id: int
-    post_id: int
-    content: str
-    removed: bool
-    published: str
-    updated: Optional[str]
-    deleted: bool
-    ap_id: str
-    local: bool
-    path: str
-    distinguished: bool
-    language_id: int
-
-
 class CommentAggregates(BaseApiModel):
     id: int
     comment_id: int
@@ -53,31 +36,26 @@ class CommentAggregates(BaseApiModel):
 
 class CommentView(BaseApiModel):
     comment: Comment
-    creator: Person
-    post: Post
     community: Community
     counts: CommentAggregates
+    creator: Person
     creator_banned_from_community: bool
-    subscribed: SubscribedType
-    saved: bool
     creator_blocked: bool
     my_vote: Optional[int]
+    post: Post
+    saved: bool
+    subscribed: SubscribedType
 
 
 class CommentResponse(BaseApiModel):
     comment_view: CommentView
-    recipient_ids: List[int]
     form_id: Optional[str]
+    recipient_ids: List[int]
 
 
 class GetComment(BaseApiModel):
     auth: Optional[str]
     id: int
-
-
-class GetCommentResponse(BaseApiModel):
-    comment_view: CommentView
-    recipient_ids: List[Optional[int]]
 
 
 class GetComments(BaseApiModel):
@@ -89,7 +67,7 @@ class GetComments(BaseApiModel):
     page: Optional[int]
     parent_id: Optional[int]
     post_id: Optional[int]
-    saved_only: Optional[int]
+    saved_only: Optional[bool]
     sort: Optional[CommentSortType]
     type_: Optional[ListingType]
 
@@ -141,6 +119,9 @@ class ResolveCommentReport(BaseApiModel):
 
 class CommentResolveResponse(BaseApiModel):
     comment_report_view: CommentReportView
+
+
+# TODO: discuss removal of this class.
 
 
 class ListCommentReports(BaseApiModel):

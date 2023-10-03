@@ -75,12 +75,6 @@ class GetComment(BaseApiModel):
     id: int
 
 
-class CommentResponse(BaseApiModel):
-    comment_view: CommentView
-    form_id: Optional[str]
-    recipient_ids: List[Optional[int]]
-
-
 class GetComments(BaseApiModel):
     auth: Optional[str]
     community_id: Optional[int]

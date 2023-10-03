@@ -10,7 +10,8 @@ from pylemmy.api.utils import BaseApiModel
 class Person(BaseApiModel):
     actor_id: str
     # admin: bool
-    admin: Optional[bool]  # not to specification. change to accept non-conforming API responses
+    # not to specification. Change to accept non-conforming API responses
+    admin: Optional[bool]
     avatar: Optional[str]
     ban_expires: Optional[str]
     banned: bool

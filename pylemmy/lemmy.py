@@ -172,7 +172,7 @@ class Lemmy:
             raise ValueError(msg)
 
         result = self.get_request(LemmyAPI.Comment, params=payload)
-        parsed_result = api.comment.GetCommentResponse(**result)
+        parsed_result = api.comment.CommentResponse(**result)
 
         return Comment(self, parsed_result.comment_view)
 

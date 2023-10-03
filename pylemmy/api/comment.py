@@ -53,21 +53,21 @@ class CommentAggregates(BaseApiModel):
 
 class CommentView(BaseApiModel):
     comment: Comment
-    creator: Person
-    post: Post
     community: Community
     counts: CommentAggregates
+    creator: Person
     creator_banned_from_community: bool
-    subscribed: SubscribedType
-    saved: bool
     creator_blocked: bool
     my_vote: Optional[int]
+    post: Post
+    saved: bool
+    subscribed: SubscribedType
 
 
 class CommentResponse(BaseApiModel):
     comment_view: CommentView
-    recipient_ids: List[int]
     form_id: Optional[str]
+    recipient_ids: List[int]
 
 
 class GetComment(BaseApiModel):
@@ -75,8 +75,9 @@ class GetComment(BaseApiModel):
     id: int
 
 
-class GetCommentResponse(BaseApiModel):
+class CommentResponse(BaseApiModel):
     comment_view: CommentView
+    form_id: Optional[str]
     recipient_ids: List[Optional[int]]
 
 
@@ -89,7 +90,7 @@ class GetComments(BaseApiModel):
     page: Optional[int]
     parent_id: Optional[int]
     post_id: Optional[int]
-    saved_only: Optional[int]
+    saved_only: Optional[bool]
     sort: Optional[CommentSortType]
     type_: Optional[ListingType]
 
@@ -141,6 +142,7 @@ class ResolveCommentReport(BaseApiModel):
 
 class CommentResolveResponse(BaseApiModel):
     comment_report_view: CommentReportView
+#TODO: discuss removal of this class.
 
 
 class ListCommentReports(BaseApiModel):

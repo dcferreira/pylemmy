@@ -51,10 +51,13 @@ class PostAggregates(BaseApiModel):
     downvotes: int
     featured_community: bool
     featured_local: bool
+    hot_rank: int
+    hot_rank_active: int
     id: int
     newest_comment_time: str
     newest_comment_time_necro: str
     post_id: int
+    published: str
     score: int
     upvotes: int
 
@@ -85,8 +88,8 @@ class GetPost(BaseApiModel):
 
 class GetPostResponse(BaseApiModel):
     community_view: CommunityView
+    cross_posts: List[PostView]
     moderators: List[CommunityModeratorView]
-    online: int
     post_view: PostView
 
 
@@ -106,28 +109,28 @@ class GetPostsResponse(BaseApiModel):
 
 
 class PostReport(BaseApiModel):
-    id: int
     creator_id: int
-    post_id: int
+    id: int
+    original_post_body: Optional[str]
     original_post_name: str
     original_post_url: Optional[str]
-    original_post_body: Optional[str]
+    post_id: int
+    published: str
     reason: str
     resolved: bool
-    resolved_id: Optional[int]
-    published: str
+    resolver_id: Optional[int]
     updated: Optional[str]
 
 
 class PostReportView(BaseApiModel):
-    post_report: PostReport
-    post: Post
     community: Community
+    counts: PostAggregates
     creator: Person
-    post_creator: Person
     creator_banned_from_community: bool
     my_vote: Optional[int]
-    counts: PostAggregates
+    post: Post
+    post_creator: Person
+    post_report: PostReport
     resolver: Optional[Person]
 
 
@@ -149,14 +152,14 @@ class ResolvePostReport(BaseApiModel):
 
 class PostResolveResponse(BaseApiModel):
     post_report_view: PostReportView
-
+#TODO: Discuss removal as not in the API
 
 class ListPostReports(BaseApiModel):
     auth: str
-    page: int
-    limit: int
-    unresolved_only: Optional[bool]
     community_id: Optional[int]
+    limit: Optional[int]
+    page: Optional[int]
+    unresolved_only: Optional[bool]
 
 
 class ListPostReportsResponse(BaseApiModel):

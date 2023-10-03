@@ -18,9 +18,11 @@ class Community(BaseApiModel):
     banner: Optional[str]
     deleted: bool
     description: Optional[str]
+    followers_url: str
     hidden: bool
     icon: Optional[str]
     id: int
+    inbox_url: str
     instance_id: int
     local: bool
     name: str
@@ -35,8 +37,10 @@ class Community(BaseApiModel):
 class CommunityAggregates(BaseApiModel):
     comments: int
     community_id: int
+    hot_rank: int
     id: int
     posts: int
+    published: str
     subscribers: int
     users_active_day: int
     users_active_half_year: int
@@ -90,6 +94,7 @@ class ListCommunities(BaseApiModel):
     auth: Optional[str]
     limit: Optional[int]
     page: Optional[int]
+    show_nsfw: Optional[bool]
     sort: Optional[SortType]
     type_: Optional[ListingType]
 

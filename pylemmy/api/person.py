@@ -9,8 +9,8 @@ from pylemmy.api.utils import BaseApiModel
 
 class Person(BaseApiModel):
     actor_id: str
-    admin: Optional[bool]  # not to specification change to accept API responses
     # admin: bool
+    admin: Optional[bool]  # not to specification. change to accept non-conforming API responses
     avatar: Optional[str]
     ban_expires: Optional[str]
     banned: bool
@@ -20,6 +20,7 @@ class Person(BaseApiModel):
     deleted: bool
     display_name: Optional[str]
     id: int
+    inbox_url: str
     instance_id: int
     local: bool
     matrix_user_id: Optional[str]
@@ -43,6 +44,7 @@ class PersonView(BaseApiModel):
 
 
 class GetPersonDetails(BaseApiModel):
+    auth: Optional[str]
     community_id: Optional[int]
     limit: Optional[int]
     page: Optional[int]

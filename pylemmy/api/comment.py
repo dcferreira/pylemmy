@@ -1,7 +1,7 @@
 from enum import Enum
 from typing import List, Optional
 
-from pylemmy.api.community import Community, SubscribedType
+from pylemmy.api.community2 import Community, SubscribedType
 from pylemmy.api.listing import ListingType
 from pylemmy.api.person import Person
 from pylemmy.api.post import Post

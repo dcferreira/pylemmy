@@ -1,6 +1,6 @@
 from typing import List, Optional
 
-from pylemmy.api.community import (
+from pylemmy.api.community2 import (
     Community,
     CommunityModeratorView,
     CommunityView,

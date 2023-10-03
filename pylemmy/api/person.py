@@ -45,14 +45,14 @@ class PersonView(BaseApiModel):
 
 
 class GetPersonDetails(BaseApiModel):
-    auth: Optional[str]
-    community_id: Optional[int]
-    limit: Optional[int]
-    page: Optional[int]
-    person_id: Optional[int]
-    saved_only: Optional[bool]
-    sort: Optional[SortType]
-    username: Optional[str]
+    auth: Optional[str] = None
+    community_id: Optional[int] = None
+    limit: Optional[int] = None
+    page: Optional[int] = None
+    person_id: Optional[int] = None
+    saved_only: Optional[bool] = None
+    sort: Optional[SortType] = None
+    username: Optional[str] = None
 
 
 class GetPersonDetailsResponse(BaseApiModel):

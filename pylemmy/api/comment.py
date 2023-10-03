@@ -136,7 +136,9 @@ class ResolveCommentReport(BaseApiModel):
 
 class CommentResolveResponse(BaseApiModel):
     comment_report_view: CommentReportView
-#TODO: discuss removal of this class.
+
+
+# TODO: discuss removal of this class.
 
 
 class ListCommentReports(BaseApiModel):

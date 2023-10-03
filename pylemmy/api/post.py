@@ -152,7 +152,10 @@ class ResolvePostReport(BaseApiModel):
 
 class PostResolveResponse(BaseApiModel):
     post_report_view: PostReportView
-#TODO: Discuss removal as not in the API
+
+
+# TODO: Discuss removal as not in the API
+
 
 class ListPostReports(BaseApiModel):
     auth: str

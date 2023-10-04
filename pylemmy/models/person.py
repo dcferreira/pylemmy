@@ -7,7 +7,12 @@ from pylemmy import api
 class Person:
     """A class for Persons."""
 
-    def __init__(self, lemmy: "pylemmy.Lemmy", counts: api.person.PersonAggregates, person: api.person.Person):
+    def __init__(
+        self,
+        lemmy: "pylemmy.Lemmy",
+        counts: api.person.PersonAggregates,
+        person: api.person.Person,
+    ):
         """Initialize a Person instance.
 
         :param lemmy: A Lemmy instance.

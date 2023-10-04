@@ -197,7 +197,9 @@ class Lemmy:
         result = self.get_request(LemmyAPI.Person, params=payload)
         parsed_result = api.person.GetPersonDetailsResponse(**result)
 
-        return Person(self, parsed_result.person_view)
+        return Person(
+            self, parsed_result.person_view.counts, parsed_result.person_view.person
+        )
 
     def get_post(
         self, *, post_id: Optional[int] = None, comment_id: Optional[int] = None

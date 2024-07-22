@@ -1,4 +1,5 @@
 """Implements the Comment class."""
+
 from typing import Optional
 
 import pylemmy

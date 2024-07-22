@@ -1,4 +1,5 @@
 """Test the Lemmy class and its modules."""
+
 import pytest
 
 import pylemmy

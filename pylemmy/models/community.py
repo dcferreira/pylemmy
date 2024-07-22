@@ -1,4 +1,5 @@
 """Implements the Community class."""
+
 from typing import Any, Callable, Iterable, List, Union
 
 from mypy_extensions import KwArg

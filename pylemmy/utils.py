@@ -1,4 +1,5 @@
 """General utilities package."""
+
 import asyncio
 import time
 from typing import (
@@ -69,7 +70,7 @@ class StreamYielder:
         skipping_yield = False
         if self.requests_count == 1 and self.skip_existing:
             skipping_yield = True
-        for r in filter(self.filter_fn, results):
+        for r in filter(self.filter_fn, results):  # type: ignore[var-annotated, arg-type]
             unique_key = self.unique_key_fn(r)
             if unique_key not in self.found_keys:
                 self.last_seen_key = unique_key

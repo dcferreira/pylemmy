@@ -1,4 +1,5 @@
 """Implements the Post class."""
+
 from typing import List, Optional
 
 import pylemmy

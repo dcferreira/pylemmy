@@ -1,4 +1,5 @@
 """Lists Lemmy endpoints."""
+
 from enum import Enum
 
 base_api_path = "/api/v3/"

@@ -27,7 +27,7 @@ class GetPersonDetails(BaseApiModel):
     limit: Optional[int] = None
     page: Optional[int] = None
     person_id: Optional[int] = None
-    saved_only: Optional[bool] = None
+    saved_only: Optional[bool] = False
     sort: Optional[SortType] = None
     username: Optional[str] = None
 

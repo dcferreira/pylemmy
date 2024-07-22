@@ -4,7 +4,7 @@ import urllib.parse
 from typing import Iterable, List, Optional, Union
 
 import requests
-from pydantic import AnyUrl, parse_obj_as
+from pydantic import AnyUrl, TypeAdapter
 
 from pylemmy import api
 from pylemmy.api.utils import BaseApiModel
@@ -52,7 +52,7 @@ class Lemmy:
         self.lemmy_url = (
             lemmy_url
             if isinstance(lemmy_url, AnyUrl)
-            else parse_obj_as(AnyUrl, lemmy_url)
+            else TypeAdapter(AnyUrl).validate_python(lemmy_url)
         )
         self.username = username
         self.password = password
@@ -66,7 +66,7 @@ class Lemmy:
         self.session.headers.update({"User-Agent": self.user_agent})
 
     def _get_url(self, path: LemmyAPI):
-        return urllib.parse.urljoin(self.lemmy_url, path.value)
+        return urllib.parse.urljoin(str(self.lemmy_url), path.value)
 
     def login(self) -> api.auth.LoginResponse:
         """Login to Lemmy.

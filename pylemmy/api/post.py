@@ -12,25 +12,25 @@ from pylemmy.api.utils import BaseApiModel
 
 
 class CreatePost(BaseApiModel):
-    body: Optional[str]
+    body: Optional[str] = None
     community_id: int
-    honeypot: Optional[str]
-    language_id: Optional[int]
+    honeypot: Optional[str] = None
+    language_id: Optional[int] = None
     name: str
-    nsfw: Optional[bool]
-    url: Optional[str]
+    nsfw: Optional[bool] = False
+    url: Optional[str] = None
 
 
 class PostAggregates(BaseApiModel):
     comments: int
     downvotes: int
-    featured_community: Optional[bool]
-    featured_local: Optional[bool]
-    hot_rank: Optional[int]
-    hot_rank_active: Optional[int]
-    id: Optional[int]
+    featured_community: Optional[bool] = False
+    featured_local: Optional[bool] = False
+    hot_rank: Optional[int] = None
+    hot_rank_active: Optional[int] = None
+    id: Optional[int] = None
     newest_comment_time: str
-    newest_comment_time_necro: Optional[str]
+    newest_comment_time_necro: Optional[str] = None
     post_id: int
     published: str
     score: int
@@ -43,7 +43,7 @@ class PostView(BaseApiModel):
     creator: Person
     creator_banned_from_community: bool
     creator_blocked: bool
-    my_vote: Optional[int]
+    my_vote: Optional[int] = None
     post: Post
     read: bool
     saved: bool
@@ -68,13 +68,16 @@ class GetPostResponse(BaseApiModel):
 
 
 class GetPosts(BaseApiModel):
-    community_id: Optional[int]
-    community_name: Optional[str]
-    limit: Optional[int]
-    page: Optional[int]
-    saved_only: Optional[bool]
-    sort: Optional[SortType]
-    type_: Optional[ListingType]
+    community_id: Optional[int] = None
+    community_name: Optional[str] = None
+    limit: Optional[int] = None
+    page: Optional[int] = None
+    saved_only: Optional[bool] = None
+    liked_only: Optional[bool] = None
+    disliked_only: Optional[bool] = None
+    show_hidden: Optional[bool] = None
+    sort: Optional[SortType] = None
+    type_: Optional[ListingType] = None
 
 
 class GetPostsResponse(BaseApiModel):
@@ -84,15 +87,15 @@ class GetPostsResponse(BaseApiModel):
 class PostReport(BaseApiModel):
     creator_id: int
     id: int
-    original_post_body: Optional[str]
+    original_post_body: Optional[str] = None
     original_post_name: str
-    original_post_url: Optional[str]
+    original_post_url: Optional[str] = None
     post_id: int
     published: str
     reason: str
     resolved: bool
-    resolver_id: Optional[int]
-    updated: Optional[str]
+    resolver_id: Optional[int] = None
+    updated: Optional[str] = None
 
 
 class PostReportView(BaseApiModel):
@@ -100,11 +103,11 @@ class PostReportView(BaseApiModel):
     counts: PostAggregates
     creator: Person
     creator_banned_from_community: bool
-    my_vote: Optional[int]
+    my_vote: Optional[int] = None
     post: Post
     post_creator: Person
     post_report: PostReport
-    resolver: Optional[Person]
+    resolver: Optional[Person] = None
 
 
 class CreatePostReport(BaseApiModel):
@@ -129,10 +132,10 @@ class PostResolveResponse(BaseApiModel):
 
 
 class ListPostReports(BaseApiModel):
-    community_id: Optional[int]
-    limit: Optional[int]
-    page: Optional[int]
-    unresolved_only: Optional[bool]
+    community_id: Optional[int] = None
+    limit: Optional[int] = None
+    page: Optional[int] = None
+    unresolved_only: Optional[bool] = False
 
 
 class ListPostReportsResponse(BaseApiModel):

@@ -14,8 +14,8 @@ class GetCommunity(BaseApiModel):
 class CommunityAggregates(BaseApiModel):
     comments: int
     community_id: int
-    hot_rank: Optional[int]
-    id: Optional[int]
+    hot_rank: Optional[int] = None
+    id: Optional[int] = None
     posts: int
     published: str
     subscribers: int
@@ -41,17 +41,17 @@ class GetCommunityResponse(BaseApiModel):
     community_view: CommunityView
     discussion_languages: List[int]
     moderators: List[CommunityModeratorView]
-    site: Optional[Site]
+    site: Optional[Site] = None
 
 
 class CreateCommunity(BaseApiModel):
-    banner: Optional[str]
-    description: Optional[str]
-    discussion_languages: Optional[List[int]]
-    icon: Optional[str]
+    banner: Optional[str] = None
+    description: Optional[str] = None
+    discussion_languages: Optional[List[int]] = None
+    icon: Optional[str] = None
     name: str
-    nsfw: Optional[bool]
-    posting_restricted_to_mods: Optional[bool]
+    nsfw: Optional[bool] = False
+    posting_restricted_to_mods: Optional[bool] = False
     title: str
 
 
@@ -61,11 +61,11 @@ class CommunityResponse(BaseApiModel):
 
 
 class ListCommunities(BaseApiModel):
-    limit: Optional[int]
-    page: Optional[int]
-    show_nsfw: Optional[bool]
-    sort: Optional[SortType]
-    type_: Optional[ListingType]
+    limit: Optional[int] = None
+    page: Optional[int] = None
+    show_nsfw: Optional[bool] = None
+    sort: Optional[SortType] = None
+    type_: Optional[ListingType] = None
 
 
 class ListCommunitiesResponse(BaseApiModel):

@@ -6,14 +6,14 @@ from pylemmy.api.utils import BaseApiModel
 
 class Community(BaseApiModel):
     actor_id: str
-    banner: Optional[str]
+    banner: Optional[str] = None
     deleted: bool
-    description: Optional[str]
-    followers_url: Optional[str]
+    description: Optional[str] = None
+    followers_url: Optional[str] = None
     hidden: bool
-    icon: Optional[str]
+    icon: Optional[str] = None
     id: int
-    inbox_url: Optional[str]
+    inbox_url: Optional[str] = None
     instance_id: int
     local: bool
     name: str
@@ -22,7 +22,7 @@ class Community(BaseApiModel):
     published: str
     removed: bool
     title: str
-    updated: Optional[str]
+    updated: Optional[str] = None
 
 
 class Comment(BaseApiModel):
@@ -32,7 +32,7 @@ class Comment(BaseApiModel):
     content: str
     removed: bool
     published: str
-    updated: Optional[str]
+    updated: Optional[str] = None
     deleted: bool
     ap_id: str
     local: bool
@@ -43,14 +43,14 @@ class Comment(BaseApiModel):
 
 class Post(BaseApiModel):
     ap_id: str
-    body: Optional[str]
+    body: Optional[str] = None
     community_id: int
     creator_id: int
     deleted: bool
-    embed_description: Optional[str]
-    embed_title: Optional[str]
-    embed_video_url: Optional[str]
-    featured_community: Optional[bool]
+    embed_description: Optional[str] = None
+    embed_title: Optional[str] = None
+    embed_video_url: Optional[str] = None
+    featured_community: Optional[bool] = False
     featured_local: bool
     id: int
     language_id: int
@@ -60,32 +60,32 @@ class Post(BaseApiModel):
     nsfw: bool
     published: str
     removed: bool
-    thumbnail_url: Optional[str]
-    updated: Optional[str]
-    url: Optional[str]
+    thumbnail_url: Optional[str] = None
+    updated: Optional[str] = None
+    url: Optional[str] = None
 
 
 class Person(BaseApiModel):
     actor_id: str
     # admin: bool
     # not to specification. Change to accept non-conforming API responses
-    admin: Optional[bool]
-    avatar: Optional[str]
-    ban_expires: Optional[str]
+    admin: Optional[bool] = False
+    avatar: Optional[str] = None
+    ban_expires: Optional[str] = None
     banned: bool
-    banner: Optional[str]
-    bio: Optional[str]
+    banner: Optional[str] = None
+    bio: Optional[str] = None
     bot_account: bool
     deleted: bool
-    display_name: Optional[str]
+    display_name: Optional[str] = None
     id: int
-    inbox_url: Optional[str]
+    inbox_url: Optional[str] = None
     instance_id: int
     local: bool
-    matrix_user_id: Optional[str]
+    matrix_user_id: Optional[str] = None
     name: str
     published: str
-    updated: Optional[str]
+    updated: Optional[str] = None
 
 
 class SubscribedType(Enum):

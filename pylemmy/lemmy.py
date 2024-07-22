@@ -1,4 +1,5 @@
 """Implements the Lemmy class."""
+
 import urllib.parse
 from typing import Iterable, List, Optional, Union
 

@@ -1,4 +1,5 @@
 """Test the API endpoints directly."""
+
 import time
 
 import pytest

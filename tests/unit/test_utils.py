@@ -1,4 +1,5 @@
 """Test functions from the utils module."""
+
 from pylemmy.utils import stream_apply
 
 

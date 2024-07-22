@@ -70,16 +70,16 @@ python = ["3.7", "3.8", "3.9", "3.10", "3.11"]
 detached = true
 dependencies = [
     "black>=23.1.0",
-    "ruff>=0.0.243",
+    "ruff==0.5.4",
 ]
 [tool.hatch.envs.lint.scripts]
 style = [
-    "ruff {args:.}",
+    "ruff check {args:.}",
     "black --check --diff {args:.}",
 ]
 fmt = [
     "black {args:.}",
-    "ruff --fix {args:.}",
+    "ruff check --fix {args:.}",
     "style",
 ]
 
@@ -101,6 +101,8 @@ target-version = ["py37"]
 [tool.ruff]
 target-version = "py37"
 line-length = 88
+
+[tool.ruff.lint]
 select = [
     "A",
     "ARG",
@@ -146,13 +148,13 @@ unfixable = [
     "F401",
 ]
 
-[tool.ruff.isort]
+[tool.ruff.lint.isort]
 known-first-party = ["pylemmy"]
 
-[tool.ruff.flake8-tidy-imports]
+[tool.ruff.lint.flake8-tidy-imports]
 ban-relative-imports = "all"
 
-[tool.ruff.per-file-ignores]
+[tool.ruff.lint.per-file-ignores]
 # Tests can use magic values, assertions, and relative imports
 "tests/**/*" = ["PLR2004", "S101", "TID252"]
 # Examples can have prints and magic values, and don't need docstrings
@@ -160,7 +162,7 @@ ban-relative-imports = "all"
 # Allow `id` and `type` shadowing in the api files, and no need for docstrings
 "pylemmy/api/*" = ["A003", "D10"]
 
-[tool.ruff.pydocstyle]
+[tool.ruff.lint.pydocstyle]
 convention = "google"
 
 [tool.coverage.run]

@@ -9,11 +9,11 @@ class Community(BaseApiModel):
     banner: Optional[str]
     deleted: bool
     description: Optional[str]
-    followers_url: str
+    followers_url: Optional[str]
     hidden: bool
     icon: Optional[str]
     id: int
-    inbox_url: str
+    inbox_url: Optional[str]
     instance_id: int
     local: bool
     name: str
@@ -50,7 +50,7 @@ class Post(BaseApiModel):
     embed_description: Optional[str]
     embed_title: Optional[str]
     embed_video_url: Optional[str]
-    featured_community: bool
+    featured_community: Optional[bool]
     featured_local: bool
     id: int
     language_id: int
@@ -79,7 +79,7 @@ class Person(BaseApiModel):
     deleted: bool
     display_name: Optional[str]
     id: int
-    inbox_url: str
+    inbox_url: Optional[str]
     instance_id: int
     local: bool
     matrix_user_id: Optional[str]

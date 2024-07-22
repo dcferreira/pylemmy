@@ -12,7 +12,6 @@ from pylemmy.api.utils import BaseApiModel
 
 
 class CreatePost(BaseApiModel):
-    auth: str
     body: Optional[str]
     community_id: int
     honeypot: Optional[str]
@@ -25,13 +24,13 @@ class CreatePost(BaseApiModel):
 class PostAggregates(BaseApiModel):
     comments: int
     downvotes: int
-    featured_community: bool
-    featured_local: bool
-    hot_rank: int
-    hot_rank_active: int
-    id: int
+    featured_community: Optional[bool]
+    featured_local: Optional[bool]
+    hot_rank: Optional[int]
+    hot_rank_active: Optional[int]
+    id: Optional[int]
     newest_comment_time: str
-    newest_comment_time_necro: str
+    newest_comment_time_necro: Optional[str]
     post_id: int
     published: str
     score: int
@@ -57,7 +56,6 @@ class PostResponse(BaseApiModel):
 
 
 class GetPost(BaseApiModel):
-    auth: Optional[str] = None
     comment_id: Optional[int] = None
     id: Optional[int] = None
 
@@ -70,7 +68,6 @@ class GetPostResponse(BaseApiModel):
 
 
 class GetPosts(BaseApiModel):
-    auth: Optional[str]
     community_id: Optional[int]
     community_name: Optional[str]
     limit: Optional[int]
@@ -111,7 +108,6 @@ class PostReportView(BaseApiModel):
 
 
 class CreatePostReport(BaseApiModel):
-    auth: str
     post_id: int
     reason: str
 
@@ -121,7 +117,6 @@ class PostReportResponse(BaseApiModel):
 
 
 class ResolvePostReport(BaseApiModel):
-    auth: str
     report_id: int
     resolved: bool
 
@@ -134,7 +129,6 @@ class PostResolveResponse(BaseApiModel):
 
 
 class ListPostReports(BaseApiModel):
-    auth: str
     community_id: Optional[int]
     limit: Optional[int]
     page: Optional[int]

@@ -23,7 +23,6 @@ class PersonView(BaseApiModel):
 
 
 class GetPersonDetails(BaseApiModel):
-    auth: Optional[str] = None
     community_id: Optional[int] = None
     limit: Optional[int] = None
     page: Optional[int] = None

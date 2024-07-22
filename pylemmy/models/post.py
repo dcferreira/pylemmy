@@ -33,8 +33,8 @@ class PostReport:
 
         :param resolved: Either resolve or unresolve the report.
         """
+        self.lemmy.get_token()
         payload = api.post.ResolvePostReport(
-            auth=self.lemmy.get_token(),
             report_id=self.report_view.post_report.id,
             resolved=resolved,
         )
@@ -79,8 +79,8 @@ class Post:
         :param kwargs: See optional arguments in [CreateComment](
         https://join-lemmy.org/api/interfaces/CreateComment.html).
         """
+        self.lemmy.get_token()
         payload = api.comment.CreateComment(
-            auth=self.lemmy.get_token(),
             content=content,
             post_id=self.post_view.post.id,
             **kwargs,
@@ -99,7 +99,6 @@ class Post:
         https://join-lemmy.org/api/interfaces/GetComments.html).
         """
         payload = api.comment.GetComments(
-            auth=self.lemmy.get_token_optional(),
             post_id=self.post_view.post.id,
             **kwargs,
         )
@@ -116,8 +115,9 @@ class Post:
 
         :param reason: A reason for the report.
         """
+        self.lemmy.get_token()
         payload = api.post.CreatePostReport(
-            auth=self.lemmy.get_token(), post_id=self.post_view.post.id, reason=reason
+            post_id=self.post_view.post.id, reason=reason
         )
         result = self.lemmy.post_request(LemmyAPI.CreatePostReport, params=payload)
 

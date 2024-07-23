@@ -1,0 +1,1771 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../comment/">
+      
+      
+        <link rel="next" href="../post/">
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-9.1.20">
+    
+    
+      
+        <title>Community - pylemmy Docs</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.eebd395e.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ecc896b0.min.css">
+      
+      
+
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/_mkdocstrings.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#pylemmy.models.community" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="pylemmy Docs" class="md-header__button md-logo" aria-label="pylemmy Docs" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            pylemmy Docs
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Community
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+          
+            
+            
+            
+            <input class="md-option" data-md-color-media="(prefers-color-scheme)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+            
+              <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_3" hidden>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m14.3 16-.7-2h-3.2l-.7 2H7.8L11 7h2l3.2 9h-1.9M20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69m-9.15 3.96h2.3L12 9l-1.15 3.65Z"/></svg>
+              </label>
+            
+          
+            
+            
+            
+            <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_2">
+            
+              <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+              </label>
+            
+          
+            
+            
+            
+            <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to system preference"  type="radio" name="__palette" id="__palette_3">
+            
+              <label class="md-header__button md-icon" title="Switch to system preference" for="__palette_2" hidden>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12c0-2.42-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+              </label>
+            
+          
+        </form>
+      
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="pylemmy Docs" class="md-nav__button md-logo" aria-label="pylemmy Docs" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    pylemmy Docs
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        pylemmy
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+          Api
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          Api
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lemmy/" class="md-nav__link">
+        Lemmy
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../utils/" class="md-nav__link">
+        Utils
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3" checked>
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_3" id="__nav_2_3_label" tabindex="0">
+          Models
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="true">
+        <label class="md-nav__title" for="__nav_2_3">
+          <span class="md-nav__icon md-icon"></span>
+          Models
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../comment/" class="md-nav__link">
+        Comment
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Community
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Community
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#pylemmy.models.community" class="md-nav__link">
+    community
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pylemmy.models.community.Community" class="md-nav__link">
+    Community
+  </a>
+  
+    <nav class="md-nav" aria-label="Community">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pylemmy.models.community.Community.stream" class="md-nav__link">
+    stream
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pylemmy.models.community.Community.create_post" class="md-nav__link">
+    create_post
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pylemmy.models.community.Community.get_comments" class="md-nav__link">
+    get_comments
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pylemmy.models.community.Community.get_posts" class="md-nav__link">
+    get_posts
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pylemmy.models.community.Community.list_comment_reports" class="md-nav__link">
+    list_comment_reports
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pylemmy.models.community.Community.list_post_reports" class="md-nav__link">
+    list_post_reports
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pylemmy.models.community.CommunityStream" class="md-nav__link">
+    CommunityStream
+  </a>
+  
+    <nav class="md-nav" aria-label="CommunityStream">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pylemmy.models.community.CommunityStream.get_comments" class="md-nav__link">
+    get_comments
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pylemmy.models.community.CommunityStream.get_posts" class="md-nav__link">
+    get_posts
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pylemmy.models.community.MultiCommunityStream" class="md-nav__link">
+    MultiCommunityStream
+  </a>
+  
+    <nav class="md-nav" aria-label="MultiCommunityStream">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pylemmy.models.community.MultiCommunityStream.comments_apply" class="md-nav__link">
+    comments_apply
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pylemmy.models.community.MultiCommunityStream.content_apply" class="md-nav__link">
+    content_apply
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pylemmy.models.community.MultiCommunityStream.posts_apply" class="md-nav__link">
+    posts_apply
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../post/" class="md-nav__link">
+        Post
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#pylemmy.models.community" class="md-nav__link">
+    community
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pylemmy.models.community.Community" class="md-nav__link">
+    Community
+  </a>
+  
+    <nav class="md-nav" aria-label="Community">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pylemmy.models.community.Community.stream" class="md-nav__link">
+    stream
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pylemmy.models.community.Community.create_post" class="md-nav__link">
+    create_post
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pylemmy.models.community.Community.get_comments" class="md-nav__link">
+    get_comments
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pylemmy.models.community.Community.get_posts" class="md-nav__link">
+    get_posts
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pylemmy.models.community.Community.list_comment_reports" class="md-nav__link">
+    list_comment_reports
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pylemmy.models.community.Community.list_post_reports" class="md-nav__link">
+    list_post_reports
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pylemmy.models.community.CommunityStream" class="md-nav__link">
+    CommunityStream
+  </a>
+  
+    <nav class="md-nav" aria-label="CommunityStream">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pylemmy.models.community.CommunityStream.get_comments" class="md-nav__link">
+    get_comments
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pylemmy.models.community.CommunityStream.get_posts" class="md-nav__link">
+    get_posts
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pylemmy.models.community.MultiCommunityStream" class="md-nav__link">
+    MultiCommunityStream
+  </a>
+  
+    <nav class="md-nav" aria-label="MultiCommunityStream">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pylemmy.models.community.MultiCommunityStream.comments_apply" class="md-nav__link">
+    comments_apply
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pylemmy.models.community.MultiCommunityStream.content_apply" class="md-nav__link">
+    content_apply
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pylemmy.models.community.MultiCommunityStream.posts_apply" class="md-nav__link">
+    posts_apply
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  <h1>Community</h1>
+
+<div class="doc doc-object doc-module">
+
+
+
+<a id="pylemmy.models.community"></a>
+  <div class="doc doc-contents first">
+  
+      <p>Implements the Community class.</p>
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="pylemmy.models.community.Community" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">Community</span><span class="p">(</span><span class="n">lemmy</span><span class="p">,</span> <span class="n">community</span><span class="p">)</span></code>
+
+</h2>
+
+
+  <div class="doc doc-contents ">
+
+  
+      <p>A class for Communities.</p>
+<p>To obtain an instance of this class for c/test run:</p>
+<pre><code>community = lemmy.get_community("test")
+</code></pre>
+  
+      <p>Initialize a Community instance.</p>
+
+
+
+  <p>Parameters:</p>
+  <ul>
+      <li class="field-body">
+        <b><code>lemmy</code></b>
+            (<code><a class="autorefs autorefs-internal" title="pylemmy.Lemmy" href="../../lemmy/#pylemmy.lemmy.Lemmy">Lemmy</a></code>)
+        –
+        <div class="doc-md-description">
+          <p>A Lemmy instance.</p>
+        </div>
+      </li>
+      <li class="field-body">
+        <b><code>community</code></b>
+            (<code><span title="pylemmy.api.community.CommunityView">CommunityView</span></code>)
+        –
+        <div class="doc-md-description">
+          <p>A <a href="https://join-lemmy.org/api/interfaces/CommunityView.html">CommunityView</a>.</p>
+        </div>
+      </li>
+  </ul>
+
+                <details class="quote">
+                  <summary>Source code in <code>pylemmy/models/community.py</code></summary>
+                  <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span>
+<span class="normal">32</span>
+<span class="normal">33</span>
+<span class="normal">34</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">lemmy</span><span class="p">:</span> <span class="s2">&quot;pylemmy.Lemmy&quot;</span><span class="p">,</span> <span class="n">community</span><span class="p">:</span> <span class="n">api</span><span class="o">.</span><span class="n">community</span><span class="o">.</span><span class="n">CommunityView</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Initialize a Community instance.</span>
+
+<span class="sd">    :param lemmy: A Lemmy instance.</span>
+<span class="sd">    :param community: A [CommunityView](</span>
+<span class="sd">    https://join-lemmy.org/api/interfaces/CommunityView.html).</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">lemmy</span> <span class="o">=</span> <span class="n">lemmy</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">blocked</span> <span class="o">=</span> <span class="n">community</span><span class="o">.</span><span class="n">blocked</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">safe</span> <span class="o">=</span> <span class="n">community</span><span class="o">.</span><span class="n">community</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">counts</span> <span class="o">=</span> <span class="n">community</span><span class="o">.</span><span class="n">counts</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">subscribed</span> <span class="o">=</span> <span class="n">community</span><span class="o">.</span><span class="n">subscribed</span>
+</code></pre></div></td></tr></table></div>
+                </details>
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="pylemmy.models.community.Community.stream" class="doc doc-heading">
+          <code class="highlight language-python"><span class="n">stream</span><span class="p">:</span> <span class="n">CommunityStream</span></code>
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+  </span>
+
+</h3>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Returns a stream of content.</p>
+<p>This stream is to be used to monitor posts or comments.</p>
+<p>Example:</p>
+<pre><code>community = lemmy.get_community("test")
+for post in community.stream.get_posts():
+    process_post(post)
+</code></pre>
+  </div>
+
+</div>
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+
+<h3 id="pylemmy.models.community.Community.create_post" class="doc doc-heading">
+          <code class="highlight language-python"><span class="n">create_post</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></code>
+
+</h3>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Create a new post in this Community.</p>
+
+
+
+  <p>Parameters:</p>
+  <ul>
+      <li class="field-body">
+        <b><code>name</code></b>
+            (<code>str</code>)
+        –
+        <div class="doc-md-description">
+          <p>Name of the post.</p>
+        </div>
+      </li>
+      <li class="field-body">
+        <b><code>kwargs</code></b>
+        –
+        <div class="doc-md-description">
+          <p>See optional arguments in <a href="https://join-lemmy.org/api/interfaces/CreatePost.html">CreatePost</a>.</p>
+        </div>
+      </li>
+  </ul>
+
+
+
+  <p>Returns:</p>
+  <ul>
+      <li class="field-body">
+            <code><a class="autorefs autorefs-internal" title="pylemmy.models.post.Post" href="../post/#pylemmy.models.post.Post">Post</a></code>
+        –
+        <div class="doc-md-description">
+          <p>The created Post.</p>
+      </div>
+      </li>
+  </ul>
+
+          <details class="quote">
+            <summary>Source code in <code>pylemmy/models/community.py</code></summary>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">36</span>
+<span class="normal">37</span>
+<span class="normal">38</span>
+<span class="normal">39</span>
+<span class="normal">40</span>
+<span class="normal">41</span>
+<span class="normal">42</span>
+<span class="normal">43</span>
+<span class="normal">44</span>
+<span class="normal">45</span>
+<span class="normal">46</span>
+<span class="normal">47</span>
+<span class="normal">48</span>
+<span class="normal">49</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">create_post</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Post</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Create a new post in this Community.</span>
+
+<span class="sd">    :param name: Name of the post.</span>
+<span class="sd">    :param kwargs: See optional arguments in [CreatePost](</span>
+<span class="sd">    https://join-lemmy.org/api/interfaces/CreatePost.html).</span>
+<span class="sd">    :return: The created Post.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">lemmy</span><span class="o">.</span><span class="n">get_token</span><span class="p">()</span>
+    <span class="n">payload</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">post</span><span class="o">.</span><span class="n">CreatePost</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span> <span class="n">community_id</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">safe</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">lemmy</span><span class="o">.</span><span class="n">post_request</span><span class="p">(</span><span class="n">LemmyAPI</span><span class="o">.</span><span class="n">Post</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">payload</span><span class="p">)</span>
+    <span class="n">parsed_result</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">post</span><span class="o">.</span><span class="n">PostResponse</span><span class="p">(</span><span class="o">**</span><span class="n">result</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">Post</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">lemmy</span><span class="p">,</span> <span class="n">parsed_result</span><span class="o">.</span><span class="n">post_view</span><span class="p">,</span> <span class="n">community</span><span class="o">=</span><span class="bp">self</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+          </details>
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+<h3 id="pylemmy.models.community.Community.get_comments" class="doc doc-heading">
+          <code class="highlight language-python"><span class="n">get_comments</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></code>
+
+</h3>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Gets a list of Comments from this community.</p>
+
+
+
+  <p>Parameters:</p>
+  <ul>
+      <li class="field-body">
+        <b><code>kwargs</code></b>
+        –
+        <div class="doc-md-description">
+          <p>See optional arguments in <a href="https://join-lemmy.org/api/interfaces/GetComments.html">GetComments</a>.</p>
+        </div>
+      </li>
+  </ul>
+
+          <details class="quote">
+            <summary>Source code in <code>pylemmy/models/community.py</code></summary>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">63</span>
+<span class="normal">64</span>
+<span class="normal">65</span>
+<span class="normal">66</span>
+<span class="normal">67</span>
+<span class="normal">68</span>
+<span class="normal">69</span>
+<span class="normal">70</span>
+<span class="normal">71</span>
+<span class="normal">72</span>
+<span class="normal">73</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">get_comments</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Comment</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Gets a list of Comments from this community.</span>
+
+<span class="sd">    :param kwargs: See optional arguments in [GetComments](</span>
+<span class="sd">    https://join-lemmy.org/api/interfaces/GetComments.html).</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">payload</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">comment</span><span class="o">.</span><span class="n">GetComments</span><span class="p">(</span><span class="n">community_id</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">safe</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">lemmy</span><span class="o">.</span><span class="n">get_request</span><span class="p">(</span><span class="n">LemmyAPI</span><span class="o">.</span><span class="n">GetComments</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">payload</span><span class="p">)</span>
+    <span class="n">parsed_result</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">comment</span><span class="o">.</span><span class="n">GetCommentsResponse</span><span class="p">(</span><span class="o">**</span><span class="n">result</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="p">[</span><span class="n">Comment</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">lemmy</span><span class="p">,</span> <span class="n">comment</span><span class="p">)</span> <span class="k">for</span> <span class="n">comment</span> <span class="ow">in</span> <span class="n">parsed_result</span><span class="o">.</span><span class="n">comments</span><span class="p">]</span>
+</code></pre></div></td></tr></table></div>
+          </details>
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+<h3 id="pylemmy.models.community.Community.get_posts" class="doc doc-heading">
+          <code class="highlight language-python"><span class="n">get_posts</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></code>
+
+</h3>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Gets a list of Posts from this community.</p>
+
+
+
+  <p>Parameters:</p>
+  <ul>
+      <li class="field-body">
+        <b><code>kwargs</code></b>
+        –
+        <div class="doc-md-description">
+          <p>See optional arguments in <a href="https://join-lemmy.org/api/interfaces/GetPosts.html">GetPosts</a>.</p>
+        </div>
+      </li>
+  </ul>
+
+          <details class="quote">
+            <summary>Source code in <code>pylemmy/models/community.py</code></summary>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">51</span>
+<span class="normal">52</span>
+<span class="normal">53</span>
+<span class="normal">54</span>
+<span class="normal">55</span>
+<span class="normal">56</span>
+<span class="normal">57</span>
+<span class="normal">58</span>
+<span class="normal">59</span>
+<span class="normal">60</span>
+<span class="normal">61</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">get_posts</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Post</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Gets a list of Posts from this community.</span>
+
+<span class="sd">    :param kwargs: See optional arguments in [GetPosts](</span>
+<span class="sd">    https://join-lemmy.org/api/interfaces/GetPosts.html).</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">payload</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">post</span><span class="o">.</span><span class="n">GetPosts</span><span class="p">(</span><span class="n">community_id</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">safe</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">lemmy</span><span class="o">.</span><span class="n">get_request</span><span class="p">(</span><span class="n">LemmyAPI</span><span class="o">.</span><span class="n">GetPosts</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">payload</span><span class="p">)</span>
+    <span class="n">parsed_result</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">post</span><span class="o">.</span><span class="n">GetPostsResponse</span><span class="p">(</span><span class="o">**</span><span class="n">result</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="p">[</span><span class="n">Post</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">lemmy</span><span class="p">,</span> <span class="n">post</span><span class="p">,</span> <span class="n">community</span><span class="o">=</span><span class="bp">self</span><span class="p">)</span> <span class="k">for</span> <span class="n">post</span> <span class="ow">in</span> <span class="n">parsed_result</span><span class="o">.</span><span class="n">posts</span><span class="p">]</span>
+</code></pre></div></td></tr></table></div>
+          </details>
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+<h3 id="pylemmy.models.community.Community.list_comment_reports" class="doc doc-heading">
+          <code class="highlight language-python"><span class="n">list_comment_reports</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></code>
+
+</h3>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>List comment reports in this community.</p>
+
+
+
+  <p>Parameters:</p>
+  <ul>
+      <li class="field-body">
+        <b><code>kwargs</code></b>
+        –
+        <div class="doc-md-description">
+          <p>See optional arguments in <a href="https://join-lemmy.org/api/interfaces/ListCommentReports.html">ListCommentReports</a>.</p>
+        </div>
+      </li>
+  </ul>
+
+          <details class="quote">
+            <summary>Source code in <code>pylemmy/models/community.py</code></summary>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">83</span>
+<span class="normal">84</span>
+<span class="normal">85</span>
+<span class="normal">86</span>
+<span class="normal">87</span>
+<span class="normal">88</span>
+<span class="normal">89</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">list_comment_reports</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">api</span><span class="o">.</span><span class="n">comment</span><span class="o">.</span><span class="n">CommentReportView</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;List comment reports in this community.</span>
+
+<span class="sd">    :param kwargs: See optional arguments in [ListCommentReports](</span>
+<span class="sd">    https://join-lemmy.org/api/interfaces/ListCommentReports.html).</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">lemmy</span><span class="o">.</span><span class="n">list_comment_reports</span><span class="p">(</span><span class="n">community_id</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">safe</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+          </details>
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+<h3 id="pylemmy.models.community.Community.list_post_reports" class="doc doc-heading">
+          <code class="highlight language-python"><span class="n">list_post_reports</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></code>
+
+</h3>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>List post reports in this community.</p>
+
+
+
+  <p>Parameters:</p>
+  <ul>
+      <li class="field-body">
+        <b><code>kwargs</code></b>
+        –
+        <div class="doc-md-description">
+          <p>See optional arguments in <a href="https://join-lemmy.org/api/interfaces/ListPostReports.html">ListPostReports</a>.</p>
+        </div>
+      </li>
+  </ul>
+
+          <details class="quote">
+            <summary>Source code in <code>pylemmy/models/community.py</code></summary>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">75</span>
+<span class="normal">76</span>
+<span class="normal">77</span>
+<span class="normal">78</span>
+<span class="normal">79</span>
+<span class="normal">80</span>
+<span class="normal">81</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">list_post_reports</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">api</span><span class="o">.</span><span class="n">post</span><span class="o">.</span><span class="n">PostReportView</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;List post reports in this community.</span>
+
+<span class="sd">    :param kwargs: See optional arguments in [ListPostReports](</span>
+<span class="sd">    https://join-lemmy.org/api/interfaces/ListPostReports.html).</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">lemmy</span><span class="o">.</span><span class="n">list_post_reports</span><span class="p">(</span><span class="n">community_id</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">safe</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+          </details>
+  </div>
+
+</div>
+
+
+
+  </div>
+
+  </div>
+
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="pylemmy.models.community.CommunityStream" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">CommunityStream</span><span class="p">(</span><span class="n">community</span><span class="p">)</span></code>
+
+</h2>
+
+
+  <div class="doc doc-contents ">
+
+  
+      <p>Helper class to stream content from a specific community.</p>
+<p>This class shouldn't be directly initialized, but rather accessed through
+[Community][pylemmy.community.Community].</p>
+<p>Example:</p>
+<pre><code>community = lemmy.get_community("test")
+for post in community.stream.get_posts():
+    process_post(post)
+</code></pre>
+  
+      <p>Initialize a CommunityStream.</p>
+
+
+
+  <p>Parameters:</p>
+  <ul>
+      <li class="field-body">
+        <b><code>community</code></b>
+            (<code><a class="autorefs autorefs-internal" title="pylemmy.models.community.Community" href="#pylemmy.models.community.Community">Community</a></code>)
+        –
+        <div class="doc-md-description">
+          <p>A Community to run the stream on.</p>
+        </div>
+      </li>
+  </ul>
+
+                <details class="quote">
+                  <summary>Source code in <code>pylemmy/models/community.py</code></summary>
+                  <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">119</span>
+<span class="normal">120</span>
+<span class="normal">121</span>
+<span class="normal">122</span>
+<span class="normal">123</span>
+<span class="normal">124</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">community</span><span class="p">:</span> <span class="n">Community</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Initialize a CommunityStream.</span>
+
+<span class="sd">    :param community: A Community to run the stream on.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">community</span> <span class="o">=</span> <span class="n">community</span>
+</code></pre></div></td></tr></table></div>
+                </details>
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+
+<h3 id="pylemmy.models.community.CommunityStream.get_comments" class="doc doc-heading">
+          <code class="highlight language-python"><span class="n">get_comments</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></code>
+
+</h3>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Get a stream of Comments in the Community.</p>
+
+
+
+  <p>Parameters:</p>
+  <ul>
+      <li class="field-body">
+        <b><code>kwargs</code></b>
+        –
+        <div class="doc-md-description">
+          <p>See the optional arguments in <a class="autorefs autorefs-internal" href="../../utils/#pylemmy.utils.stream_generator">stream_generator</a>.</p>
+        </div>
+      </li>
+  </ul>
+
+          <details class="quote">
+            <summary>Source code in <code>pylemmy/models/community.py</code></summary>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">138</span>
+<span class="normal">139</span>
+<span class="normal">140</span>
+<span class="normal">141</span>
+<span class="normal">142</span>
+<span class="normal">143</span>
+<span class="normal">144</span>
+<span class="normal">145</span>
+<span class="normal">146</span>
+<span class="normal">147</span>
+<span class="normal">148</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">get_comments</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Get a stream of Comments in the Community.</span>
+
+<span class="sd">    :param kwargs: See the optional arguments in</span>
+<span class="sd">    [stream_generator][pylemmy.utils.stream_generator].</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">stream_generator</span><span class="p">(</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">community</span><span class="o">.</span><span class="n">get_comments</span><span class="p">,</span>
+        <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">comment_view</span><span class="o">.</span><span class="n">comment</span><span class="o">.</span><span class="n">ap_id</span><span class="p">),</span>
+        <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
+    <span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+          </details>
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+<h3 id="pylemmy.models.community.CommunityStream.get_posts" class="doc doc-heading">
+          <code class="highlight language-python"><span class="n">get_posts</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></code>
+
+</h3>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Get a stream of Posts in the Community.</p>
+
+
+
+  <p>Parameters:</p>
+  <ul>
+      <li class="field-body">
+        <b><code>kwargs</code></b>
+        –
+        <div class="doc-md-description">
+          <p>See the optional arguments in <a class="autorefs autorefs-internal" href="../../utils/#pylemmy.utils.stream_generator">stream_generator</a>.</p>
+        </div>
+      </li>
+  </ul>
+
+          <details class="quote">
+            <summary>Source code in <code>pylemmy/models/community.py</code></summary>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">126</span>
+<span class="normal">127</span>
+<span class="normal">128</span>
+<span class="normal">129</span>
+<span class="normal">130</span>
+<span class="normal">131</span>
+<span class="normal">132</span>
+<span class="normal">133</span>
+<span class="normal">134</span>
+<span class="normal">135</span>
+<span class="normal">136</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">get_posts</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Get a stream of Posts in the Community.</span>
+
+<span class="sd">    :param kwargs: See the optional arguments in</span>
+<span class="sd">    [stream_generator][pylemmy.utils.stream_generator].</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">stream_generator</span><span class="p">(</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">community</span><span class="o">.</span><span class="n">get_posts</span><span class="p">,</span>
+        <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">post_view</span><span class="o">.</span><span class="n">post</span><span class="o">.</span><span class="n">ap_id</span><span class="p">),</span>
+        <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
+    <span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+          </details>
+  </div>
+
+</div>
+
+
+
+  </div>
+
+  </div>
+
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="pylemmy.models.community.MultiCommunityStream" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">MultiCommunityStream</span><span class="p">(</span><span class="n">communities</span><span class="p">)</span></code>
+
+</h2>
+
+
+  <div class="doc doc-contents ">
+
+  
+      <p>Helper class to stream content from multiple communities.</p>
+<p>This class shouldn't be directly initialized, but rather accessed through
+<a class="autorefs autorefs-internal" href="../../lemmy/#pylemmy.lemmy.Lemmy">Lemmy</a>.</p>
+<p>Example:
+A simple example where we want to print the content of each post.</p>
+<pre><code>def process_content(elem: Union[Post, Comment]):
+        print(elem.post_view.post.name)
+
+multi_stream = lemmy.multi_communities_stream(["community1", "community2"])
+multi_stream.content_apply(process_content)
+</code></pre>
+  
+      <p>Initializer for MultiCommunityStream.</p>
+
+
+
+  <p>Parameters:</p>
+  <ul>
+      <li class="field-body">
+        <b><code>communities</code></b>
+            (<code><span title="typing.List">List</span>[<a class="autorefs autorefs-internal" title="pylemmy.models.community.Community" href="#pylemmy.models.community.Community">Community</a>]</code>)
+        –
+        <div class="doc-md-description">
+          <p>A list of communities to monitor.</p>
+        </div>
+      </li>
+  </ul>
+
+                <details class="quote">
+                  <summary>Source code in <code>pylemmy/models/community.py</code></summary>
+                  <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">167</span>
+<span class="normal">168</span>
+<span class="normal">169</span>
+<span class="normal">170</span>
+<span class="normal">171</span>
+<span class="normal">172</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">communities</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Community</span><span class="p">]):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Initializer for MultiCommunityStream.</span>
+
+<span class="sd">    :param communities: A list of communities to monitor.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">communities</span> <span class="o">=</span> <span class="n">communities</span>
+</code></pre></div></td></tr></table></div>
+                </details>
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+
+<h3 id="pylemmy.models.community.MultiCommunityStream.comments_apply" class="doc doc-heading">
+          <code class="highlight language-python"><span class="n">comments_apply</span><span class="p">(</span><span class="n">callback</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></code>
+
+</h3>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Apply a callback function to a stream of Comments in the Communities.</p>
+<p>Example:
+A simple example where we want to print the content of each comment.</p>
+<pre><code>def process_content(elem: Union[Post, Comment]):
+    print(elem.comment_view.comment.content)
+
+multi_stream = lemmy.multi_communities_stream(["community1", "community2"])
+multi_stream.content_apply(process_content)
+</code></pre>
+
+
+
+  <p>Parameters:</p>
+  <ul>
+      <li class="field-body">
+        <b><code>callback</code></b>
+            (<code><span title="typing.Callable">Callable</span>[[<a class="autorefs autorefs-internal" title="pylemmy.models.comment.Comment" href="../comment/#pylemmy.models.comment.Comment">Comment</a>], <span title="typing.Any">Any</span>]</code>)
+        –
+        <div class="doc-md-description">
+          <p>Function that will be called for each Comment.</p>
+        </div>
+      </li>
+      <li class="field-body">
+        <b><code>kwargs</code></b>
+        –
+        <div class="doc-md-description">
+          <p>See the optional arguments in <a class="autorefs autorefs-internal" href="../../utils/#pylemmy.utils.stream_generator">stream_generator</a>.</p>
+        </div>
+      </li>
+  </ul>
+
+          <details class="quote">
+            <summary>Source code in <code>pylemmy/models/community.py</code></summary>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">196</span>
+<span class="normal">197</span>
+<span class="normal">198</span>
+<span class="normal">199</span>
+<span class="normal">200</span>
+<span class="normal">201</span>
+<span class="normal">202</span>
+<span class="normal">203</span>
+<span class="normal">204</span>
+<span class="normal">205</span>
+<span class="normal">206</span>
+<span class="normal">207</span>
+<span class="normal">208</span>
+<span class="normal">209</span>
+<span class="normal">210</span>
+<span class="normal">211</span>
+<span class="normal">212</span>
+<span class="normal">213</span>
+<span class="normal">214</span>
+<span class="normal">215</span>
+<span class="normal">216</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">comments_apply</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">callback</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[</span><span class="n">Comment</span><span class="p">],</span> <span class="n">Any</span><span class="p">],</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Apply a callback function to a stream of Comments in the Communities.</span>
+
+<span class="sd">    Example:</span>
+<span class="sd">    A simple example where we want to print the content of each comment.</span>
+
+<span class="sd">        def process_content(elem: Union[Post, Comment]):</span>
+<span class="sd">            print(elem.comment_view.comment.content)</span>
+
+<span class="sd">        multi_stream = lemmy.multi_communities_stream([&quot;community1&quot;, &quot;community2&quot;])</span>
+<span class="sd">        multi_stream.content_apply(process_content)</span>
+
+<span class="sd">    :param callback: Function that will be called for each Comment.</span>
+<span class="sd">    :param kwargs: See the optional arguments in</span>
+<span class="sd">    [stream_generator][pylemmy.utils.stream_generator].</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">results_fns</span> <span class="o">=</span> <span class="p">[</span><span class="n">c</span><span class="o">.</span><span class="n">get_comments</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">communities</span><span class="p">]</span>
+    <span class="n">unique_keys_fns</span> <span class="o">=</span> <span class="p">[</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">comment_view</span><span class="o">.</span><span class="n">comment</span><span class="o">.</span><span class="n">ap_id</span><span class="p">)]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">communities</span>
+    <span class="p">)</span>
+    <span class="n">stream_apply</span><span class="p">(</span><span class="n">results_fns</span><span class="p">,</span> <span class="n">unique_keys_fns</span><span class="p">,</span> <span class="n">callback</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+          </details>
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+<h3 id="pylemmy.models.community.MultiCommunityStream.content_apply" class="doc doc-heading">
+          <code class="highlight language-python"><span class="n">content_apply</span><span class="p">(</span><span class="n">callback</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></code>
+
+</h3>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Apply a callback function to a stream of Comments and Posts.</p>
+<p>Example:
+A simple example where we want to print the content of each post/comment.</p>
+<pre><code>def process_content(elem: Union[Post, Comment]):
+    if isinstance(Post, elem):
+        print(elem.post_view.post.name)
+    elif isinstance(Comment, elem):
+        print(elem.comment_view.comment.content)
+
+multi_stream = lemmy.multi_communities_stream(["community1", "community2"])
+multi_stream.content_apply(process_content)
+</code></pre>
+
+
+
+  <p>Parameters:</p>
+  <ul>
+      <li class="field-body">
+        <b><code>callback</code></b>
+            (<code><span title="typing.Callable">Callable</span>[[<span title="typing.Union">Union</span>[<a class="autorefs autorefs-internal" title="pylemmy.models.comment.Comment" href="../comment/#pylemmy.models.comment.Comment">Comment</a>, <a class="autorefs autorefs-internal" title="pylemmy.models.post.Post" href="../post/#pylemmy.models.post.Post">Post</a>]], <span title="typing.Any">Any</span>]</code>)
+        –
+        <div class="doc-md-description">
+          <p>Function that will be called for each Comment/Post.</p>
+        </div>
+      </li>
+      <li class="field-body">
+        <b><code>kwargs</code></b>
+        –
+        <div class="doc-md-description">
+          <p>See the optional arguments in <a class="autorefs autorefs-internal" href="../../utils/#pylemmy.utils.stream_generator">stream_generator</a>.</p>
+        </div>
+      </li>
+  </ul>
+
+          <details class="quote">
+            <summary>Source code in <code>pylemmy/models/community.py</code></summary>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">218</span>
+<span class="normal">219</span>
+<span class="normal">220</span>
+<span class="normal">221</span>
+<span class="normal">222</span>
+<span class="normal">223</span>
+<span class="normal">224</span>
+<span class="normal">225</span>
+<span class="normal">226</span>
+<span class="normal">227</span>
+<span class="normal">228</span>
+<span class="normal">229</span>
+<span class="normal">230</span>
+<span class="normal">231</span>
+<span class="normal">232</span>
+<span class="normal">233</span>
+<span class="normal">234</span>
+<span class="normal">235</span>
+<span class="normal">236</span>
+<span class="normal">237</span>
+<span class="normal">238</span>
+<span class="normal">239</span>
+<span class="normal">240</span>
+<span class="normal">241</span>
+<span class="normal">242</span>
+<span class="normal">243</span>
+<span class="normal">244</span>
+<span class="normal">245</span>
+<span class="normal">246</span>
+<span class="normal">247</span>
+<span class="normal">248</span>
+<span class="normal">249</span>
+<span class="normal">250</span>
+<span class="normal">251</span>
+<span class="normal">252</span>
+<span class="normal">253</span>
+<span class="normal">254</span>
+<span class="normal">255</span>
+<span class="normal">256</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">content_apply</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">callback</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[</span><span class="n">Union</span><span class="p">[</span><span class="n">Comment</span><span class="p">,</span> <span class="n">Post</span><span class="p">]],</span> <span class="n">Any</span><span class="p">],</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Apply a callback function to a stream of Comments and Posts.</span>
+
+<span class="sd">    Example:</span>
+<span class="sd">    A simple example where we want to print the content of each post/comment.</span>
+
+<span class="sd">        def process_content(elem: Union[Post, Comment]):</span>
+<span class="sd">            if isinstance(Post, elem):</span>
+<span class="sd">                print(elem.post_view.post.name)</span>
+<span class="sd">            elif isinstance(Comment, elem):</span>
+<span class="sd">                print(elem.comment_view.comment.content)</span>
+
+<span class="sd">        multi_stream = lemmy.multi_communities_stream([&quot;community1&quot;, &quot;community2&quot;])</span>
+<span class="sd">        multi_stream.content_apply(process_content)</span>
+
+
+<span class="sd">    :param callback: Function that will be called for each Comment/Post.</span>
+<span class="sd">    :param kwargs: See the optional arguments in</span>
+<span class="sd">    [stream_generator][pylemmy.utils.stream_generator].</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">posts_fns</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Callable</span><span class="p">[[</span><span class="n">KwArg</span><span class="p">(</span><span class="n">Any</span><span class="p">)],</span> <span class="n">Iterable</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="n">Post</span><span class="p">,</span> <span class="n">Comment</span><span class="p">]]]]</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="n">c</span><span class="o">.</span><span class="n">get_posts</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">communities</span>
+    <span class="p">]</span>
+    <span class="n">comments_fns</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Callable</span><span class="p">[[</span><span class="n">KwArg</span><span class="p">(</span><span class="n">Any</span><span class="p">)],</span> <span class="n">Iterable</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="n">Post</span><span class="p">,</span> <span class="n">Comment</span><span class="p">]]]]</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="n">c</span><span class="o">.</span><span class="n">get_comments</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">communities</span>
+    <span class="p">]</span>
+
+    <span class="n">posts_unique_keys_fns</span> <span class="o">=</span> <span class="p">[</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="s2">&quot;post_&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">post_view</span><span class="o">.</span><span class="n">post</span><span class="o">.</span><span class="n">ap_id</span><span class="p">)]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">communities</span>
+    <span class="p">)</span>
+    <span class="n">comments_unique_keys_fns</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="s2">&quot;comment_&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">comment_view</span><span class="o">.</span><span class="n">comment</span><span class="o">.</span><span class="n">ap_id</span><span class="p">)</span>
+    <span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">communities</span><span class="p">)</span>
+    <span class="n">stream_apply</span><span class="p">(</span>
+        <span class="n">posts_fns</span> <span class="o">+</span> <span class="n">comments_fns</span><span class="p">,</span>
+        <span class="n">posts_unique_keys_fns</span> <span class="o">+</span> <span class="n">comments_unique_keys_fns</span><span class="p">,</span>
+        <span class="n">callback</span><span class="p">,</span>
+        <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
+    <span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+          </details>
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+<h3 id="pylemmy.models.community.MultiCommunityStream.posts_apply" class="doc doc-heading">
+          <code class="highlight language-python"><span class="n">posts_apply</span><span class="p">(</span><span class="n">callback</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></code>
+
+</h3>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Apply a callback function to a stream of Posts in the Communities.</p>
+<p>Example:
+A simple example where we want to print the content of each post.</p>
+<pre><code>def process_content(elem: Union[Post, Comment]):
+    print(elem.post_view.post.name)
+
+multi_stream = lemmy.multi_communities_stream(["community1", "community2"])
+multi_stream.content_apply(process_content)
+</code></pre>
+
+
+
+  <p>Parameters:</p>
+  <ul>
+      <li class="field-body">
+        <b><code>callback</code></b>
+            (<code><span title="typing.Callable">Callable</span>[[<a class="autorefs autorefs-internal" title="pylemmy.models.post.Post" href="../post/#pylemmy.models.post.Post">Post</a>], <span title="typing.Any">Any</span>]</code>)
+        –
+        <div class="doc-md-description">
+          <p>Function that will be called for each Post.</p>
+        </div>
+      </li>
+      <li class="field-body">
+        <b><code>kwargs</code></b>
+        –
+        <div class="doc-md-description">
+          <p>See the optional arguments in <a class="autorefs autorefs-internal" href="../../utils/#pylemmy.utils.stream_generator">stream_generator</a>.</p>
+        </div>
+      </li>
+  </ul>
+
+          <details class="quote">
+            <summary>Source code in <code>pylemmy/models/community.py</code></summary>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">174</span>
+<span class="normal">175</span>
+<span class="normal">176</span>
+<span class="normal">177</span>
+<span class="normal">178</span>
+<span class="normal">179</span>
+<span class="normal">180</span>
+<span class="normal">181</span>
+<span class="normal">182</span>
+<span class="normal">183</span>
+<span class="normal">184</span>
+<span class="normal">185</span>
+<span class="normal">186</span>
+<span class="normal">187</span>
+<span class="normal">188</span>
+<span class="normal">189</span>
+<span class="normal">190</span>
+<span class="normal">191</span>
+<span class="normal">192</span>
+<span class="normal">193</span>
+<span class="normal">194</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">posts_apply</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">callback</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[</span><span class="n">Post</span><span class="p">],</span> <span class="n">Any</span><span class="p">],</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Apply a callback function to a stream of Posts in the Communities.</span>
+
+<span class="sd">    Example:</span>
+<span class="sd">    A simple example where we want to print the content of each post.</span>
+
+<span class="sd">        def process_content(elem: Union[Post, Comment]):</span>
+<span class="sd">            print(elem.post_view.post.name)</span>
+
+<span class="sd">        multi_stream = lemmy.multi_communities_stream([&quot;community1&quot;, &quot;community2&quot;])</span>
+<span class="sd">        multi_stream.content_apply(process_content)</span>
+
+<span class="sd">    :param callback: Function that will be called for each Post.</span>
+<span class="sd">    :param kwargs: See the optional arguments in</span>
+<span class="sd">    [stream_generator][pylemmy.utils.stream_generator].</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">results_fns</span> <span class="o">=</span> <span class="p">[</span><span class="n">c</span><span class="o">.</span><span class="n">get_posts</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">communities</span><span class="p">]</span>
+    <span class="n">unique_keys_fns</span> <span class="o">=</span> <span class="p">[</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">post_view</span><span class="o">.</span><span class="n">post</span><span class="o">.</span><span class="n">ap_id</span><span class="p">)]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">communities</span>
+    <span class="p">)</span>
+    <span class="n">stream_apply</span><span class="p">(</span><span class="n">results_fns</span><span class="p">,</span> <span class="n">unique_keys_fns</span><span class="p">,</span> <span class="n">callback</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+          </details>
+  </div>
+
+</div>
+
+
+
+  </div>
+
+  </div>
+
+
+</div>
+
+
+
+
+  </div>
+
+  </div>
+
+</div>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "../../..", "features": [], "search": "../../../assets/javascripts/workers/search.74e28a9f.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.220ee61c.min.js"></script>
+      
+    
+  </body>
+</html>

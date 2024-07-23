@@ -9,6 +9,6 @@ class Login(BaseApiModel):
 
 
 class LoginResponse(BaseApiModel):
-    jwt: Optional[str]
+    jwt: Optional[str] = None
     registration_created: bool
     verify_email_sent: bool

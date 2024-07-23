@@ -17,20 +17,20 @@ class CommentSortType(str, Enum):
 class CreateComment(BaseApiModel):
     content: str
     post_id: int
-    parent_id: Optional[int]
-    language_id: Optional[int]
-    form_id: Optional[str]
+    parent_id: Optional[int] = None
+    language_id: Optional[int] = None
+    form_id: Optional[str] = None
 
 
 class CommentAggregates(BaseApiModel):
-    id: Optional[int]
+    id: Optional[int] = None
     comment_id: int
     score: int
     upvotes: int
     downvotes: int
     published: str
     child_count: int
-    hot_rank: Optional[int]
+    hot_rank: Optional[int] = None
 
 
 class CommentView(BaseApiModel):
@@ -40,7 +40,7 @@ class CommentView(BaseApiModel):
     creator: Person
     creator_banned_from_community: bool
     creator_blocked: bool
-    my_vote: Optional[int]
+    my_vote: Optional[int] = None
     post: Post
     saved: bool
     subscribed: SubscribedType
@@ -48,7 +48,7 @@ class CommentView(BaseApiModel):
 
 class CommentResponse(BaseApiModel):
     comment_view: CommentView
-    form_id: Optional[str]
+    form_id: Optional[str] = None
     recipient_ids: List[int]
 
 
@@ -57,16 +57,18 @@ class GetComment(BaseApiModel):
 
 
 class GetComments(BaseApiModel):
-    community_id: Optional[int]
-    community_name: Optional[str]
-    limit: Optional[int]
-    max_depth: Optional[int]
-    page: Optional[int]
-    parent_id: Optional[int]
-    post_id: Optional[int]
-    saved_only: Optional[bool]
-    sort: Optional[CommentSortType]
-    type_: Optional[ListingType]
+    community_id: Optional[int] = None
+    community_name: Optional[str] = None
+    limit: Optional[int] = None
+    max_depth: Optional[int] = None
+    page: Optional[int] = None
+    parent_id: Optional[int] = None
+    post_id: Optional[int] = None
+    saved_only: Optional[bool] = None
+    liked_only: Optional[bool] = None
+    disliked_only: Optional[bool] = None
+    sort: Optional[CommentSortType] = None
+    type_: Optional[ListingType] = None
 
 
 class GetCommentsResponse(BaseApiModel):
@@ -81,8 +83,8 @@ class CommentReport(BaseApiModel):
     published: str
     reason: str
     resolved: bool
-    resolver_id: Optional[int]
-    updated: Optional[str]
+    resolver_id: Optional[int] = None
+    updated: Optional[str] = None
 
 
 class CommentReportView(BaseApiModel):
@@ -93,9 +95,9 @@ class CommentReportView(BaseApiModel):
     counts: CommentAggregates
     creator: Person
     creator_banned_from_community: bool
-    my_vote: Optional[int]
+    my_vote: Optional[int] = None
     post: Post
-    resolver: Optional[Person]
+    resolver: Optional[Person] = None
 
 
 class CreateCommentReport(BaseApiModel):
@@ -120,10 +122,10 @@ class CommentResolveResponse(BaseApiModel):
 
 
 class ListCommentReports(BaseApiModel):
-    community_id: Optional[int]
-    limit: Optional[int]
-    page: Optional[int]
-    unresolved_only: Optional[bool]
+    community_id: Optional[int] = None
+    limit: Optional[int] = None
+    page: Optional[int] = None
+    unresolved_only: Optional[bool] = False
 
 
 class ListCommentReportsResponse(BaseApiModel):

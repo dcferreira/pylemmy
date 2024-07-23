@@ -41,9 +41,8 @@ class Community:
         https://join-lemmy.org/api/interfaces/CreatePost.html).
         :return: The created Post.
         """
-        payload = api.post.CreatePost(
-            auth=self.lemmy.get_token(), name=name, community_id=self.safe.id, **kwargs
-        )
+        self.lemmy.get_token()
+        payload = api.post.CreatePost(name=name, community_id=self.safe.id, **kwargs)
         result = self.lemmy.post_request(LemmyAPI.Post, params=payload)
         parsed_result = api.post.PostResponse(**result)
 
@@ -55,9 +54,7 @@ class Community:
         :param kwargs: See optional arguments in [GetPosts](
         https://join-lemmy.org/api/interfaces/GetPosts.html).
         """
-        payload = api.post.GetPosts(
-            auth=self.lemmy.get_token_optional(), community_id=self.safe.id, **kwargs
-        )
+        payload = api.post.GetPosts(community_id=self.safe.id, **kwargs)
         result = self.lemmy.get_request(LemmyAPI.GetPosts, params=payload)
         parsed_result = api.post.GetPostsResponse(**result)
 
@@ -69,9 +66,7 @@ class Community:
         :param kwargs: See optional arguments in [GetComments](
         https://join-lemmy.org/api/interfaces/GetComments.html).
         """
-        payload = api.comment.GetComments(
-            auth=self.lemmy.get_token_optional(), community_id=self.safe.id, **kwargs
-        )
+        payload = api.comment.GetComments(community_id=self.safe.id, **kwargs)
         result = self.lemmy.get_request(LemmyAPI.GetComments, params=payload)
         parsed_result = api.comment.GetCommentsResponse(**result)
 

@@ -7,7 +7,6 @@ from pylemmy.api.utils import BaseApiModel
 
 
 class GetCommunity(BaseApiModel):
-    auth: Optional[str] = None
     id: Optional[int] = None
     name: Optional[str] = None
 
@@ -15,8 +14,8 @@ class GetCommunity(BaseApiModel):
 class CommunityAggregates(BaseApiModel):
     comments: int
     community_id: int
-    hot_rank: int
-    id: int
+    hot_rank: Optional[int]
+    id: Optional[int]
     posts: int
     published: str
     subscribers: int
@@ -46,7 +45,6 @@ class GetCommunityResponse(BaseApiModel):
 
 
 class CreateCommunity(BaseApiModel):
-    auth: str
     banner: Optional[str]
     description: Optional[str]
     discussion_languages: Optional[List[int]]
@@ -63,7 +61,6 @@ class CommunityResponse(BaseApiModel):
 
 
 class ListCommunities(BaseApiModel):
-    auth: Optional[str]
     limit: Optional[int]
     page: Optional[int]
     show_nsfw: Optional[bool]

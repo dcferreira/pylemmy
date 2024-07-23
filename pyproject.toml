@@ -26,7 +26,7 @@ classifiers = [
 ]
 dependencies = [
     "pydantic>=1.8,<2.0",
-    "requests>=2.18",
+    "requests>=2.18,<2.32",
     "loguru>=0.3",
     "aiostream~=0.4.5",
 ]
@@ -46,6 +46,7 @@ dependencies = [
     "types-requests",
     "pre-commit",
     "pytest",
+    "docker<7",
     "pytest-docker-compose @ git+https://github.com/tmeckel/pytest-docker-compose@feat/docker-compose-v2",
 ]
 [tool.hatch.envs.default.scripts]

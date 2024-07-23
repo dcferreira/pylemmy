@@ -115,13 +115,9 @@ class Lemmy:
         :param community: Either a community id (int) or name (str).
         """
         if isinstance(community, str):
-            payload = api.community.GetCommunity(
-                auth=self.get_token_optional(), name=community
-            )
+            payload = api.community.GetCommunity(name=community)
         elif isinstance(community, int):
-            payload = api.community.GetCommunity(
-                auth=self.get_token_optional(), id=community
-            )
+            payload = api.community.GetCommunity(id=community)
         else:
             raise ValueError()
 
@@ -137,9 +133,8 @@ class Lemmy:
         :param kwargs: See optional arguments in [CreateCommunity](
         https://join-lemmy.org/api/interfaces/CreateCommunity.html).
         """
-        payload = api.community.CreateCommunity(
-            auth=self.get_token(), name=name, title=title, **kwargs
-        )
+        self.get_token()
+        payload = api.community.CreateCommunity(name=name, title=title, **kwargs)
         result = self.post_request(LemmyAPI.Community, params=payload)
         parsed_result = api.community.CommunityResponse(**result)
 
@@ -151,9 +146,7 @@ class Lemmy:
         :param kwargs: See optional arguments in [ListCommunities](
         https://join-lemmy.org/api/interfaces/ListCommunities.html).
         """
-        payload = api.community.ListCommunities(
-            auth=self.get_token_optional(), **kwargs
-        )
+        payload = api.community.ListCommunities(**kwargs)
         result = self.get_request(LemmyAPI.ListCommunities, params=payload)
         parsed_result = api.community.ListCommunitiesResponse(**result)
 
@@ -165,9 +158,7 @@ class Lemmy:
         :param comment_id: Id of the comment.
         """
         if comment_id is not None:
-            payload = api.comment.GetComment(
-                auth=self.get_token_optional(), id=comment_id
-            )
+            payload = api.comment.GetComment(id=comment_id)
         else:
             msg = "Need to give a comment id."
             raise ValueError(msg)
@@ -184,13 +175,9 @@ class Lemmy:
         :param username: the username of the user
         """
         if person_id is not None:
-            payload = api.person.GetPersonDetails(
-                auth=self.get_token_optional(), person_id=person_id
-            )
+            payload = api.person.GetPersonDetails(person_id=person_id)
         elif username is not None:
-            payload = api.person.GetPersonDetails(
-                auth=self.get_token_optional(), username=username
-            )
+            payload = api.person.GetPersonDetails(username=username)
         else:
             msg = "Need to give a person_id or username."
             raise ValueError(msg)
@@ -211,11 +198,9 @@ class Lemmy:
         :param comment_id: Id of the comment.
         """
         if post_id is not None:
-            payload = api.post.GetPost(auth=self.get_token_optional(), id=post_id)
+            payload = api.post.GetPost(id=post_id)
         elif comment_id is not None:
-            payload = api.post.GetPost(
-                auth=self.get_token_optional(), comment_id=comment_id
-            )
+            payload = api.post.GetPost(comment_id=comment_id)
         else:
             msg = "Need to give either a post id or a comment id."
             raise ValueError(msg)
@@ -231,7 +216,8 @@ class Lemmy:
         :param kwargs: See optional arguments in [ListPostReports](
         https://join-lemmy.org/api/interfaces/ListPostReports.html).
         """
-        payload = api.post.ListPostReports(auth=self.get_token(), **kwargs)
+        self.get_token()
+        payload = api.post.ListPostReports(**kwargs)
         result = self.get_request(LemmyAPI.ListPostReports, params=payload)
         parsed_result = api.post.ListPostReportsResponse(**result)
 
@@ -243,7 +229,8 @@ class Lemmy:
         :param kwargs: See optional arguments in [ListCommentReports](
         https://join-lemmy.org/api/interfaces/ListCommentReports.html).
         """
-        payload = api.comment.ListCommentReports(auth=self.get_token(), **kwargs)
+        self.get_token()
+        payload = api.comment.ListCommentReports(**kwargs)
         result = self.get_request(LemmyAPI.ListPostReports, params=payload)
         parsed_result = api.comment.ListCommentReportsResponse(**result)
 
@@ -259,9 +246,11 @@ class Lemmy:
         :param path: A Lemmy endpoint.
         :param params: Parameters to send with the request (in the body).
         """
+        token = None if path is LemmyAPI.Login else self.get_token_optional()
         response = self.session.post(
             self._get_url(path),
             json=params.dict() if params is not None else {},
+            headers={"Authorization": f"Bearer {token}" if token else None},
             timeout=self.request_timeout,
         )
         response.raise_for_status()
@@ -277,9 +266,11 @@ class Lemmy:
         :param path: A Lemmy endpoint.
         :param params: Parameters to send with the request (in the URL).
         """
+        token = self.get_token_optional()
         response = self.session.get(
             self._get_url(path),
             params=params.dict() if params is not None else {},
+            headers={"Authorization": f"Bearer {token}" if token else None},
             timeout=self.request_timeout,
         )
         response.raise_for_status()
@@ -295,9 +286,11 @@ class Lemmy:
         :param path: A Lemmy endpoint.
         :param params: Parameters to send with the request (in the URL).
         """
+        token = self.get_token_optional()
         response = self.session.put(
             self._get_url(path),
             params=params.dict() if params is not None else {},
+            headers={"Authorization": f"Bearer {token}" if token else None},
             timeout=self.request_timeout,
         )
         return response.json()

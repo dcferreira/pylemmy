@@ -32,8 +32,8 @@ class CommentReport:
 
         :param resolved: Either resolve or unresolve the report.
         """
+        self.lemmy.get_token()
         payload = api.comment.ResolveCommentReport(
-            auth=self.lemmy.get_token(),
             report_id=self.report_view.comment_report.id,
             resolved=resolved,
         )
@@ -88,8 +88,8 @@ class Comment:
 
         :param reason: A reason for the report.
         """
+        self.lemmy.get_token()
         payload = api.comment.CreateCommentReport(
-            auth=self.lemmy.get_token(),
             comment_id=self.comment_view.comment.id,
             reason=reason,
         )

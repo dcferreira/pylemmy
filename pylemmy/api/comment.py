@@ -20,18 +20,17 @@ class CreateComment(BaseApiModel):
     parent_id: Optional[int]
     language_id: Optional[int]
     form_id: Optional[str]
-    auth: str
 
 
 class CommentAggregates(BaseApiModel):
-    id: int
+    id: Optional[int]
     comment_id: int
     score: int
     upvotes: int
     downvotes: int
     published: str
     child_count: int
-    hot_rank: int
+    hot_rank: Optional[int]
 
 
 class CommentView(BaseApiModel):
@@ -54,12 +53,10 @@ class CommentResponse(BaseApiModel):
 
 
 class GetComment(BaseApiModel):
-    auth: Optional[str]
     id: int
 
 
 class GetComments(BaseApiModel):
-    auth: Optional[str]
     community_id: Optional[int]
     community_name: Optional[str]
     limit: Optional[int]
@@ -102,7 +99,6 @@ class CommentReportView(BaseApiModel):
 
 
 class CreateCommentReport(BaseApiModel):
-    auth: str
     comment_id: int
     reason: str
 
@@ -112,7 +108,6 @@ class CommentReportResponse(BaseApiModel):
 
 
 class ResolveCommentReport(BaseApiModel):
-    auth: str
     report_id: int
     resolved: bool
 
@@ -125,7 +120,6 @@ class CommentResolveResponse(BaseApiModel):
 
 
 class ListCommentReports(BaseApiModel):
-    auth: str
     community_id: Optional[int]
     limit: Optional[int]
     page: Optional[int]

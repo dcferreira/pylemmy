@@ -73,7 +73,9 @@ def create_community(wait_for_api, login):
     name = "testcom"
     title = "Test Community"
     response = request_session.post(
-        url, json={"auth": login, "name": name, "title": title}
+        url,
+        json={"name": name, "title": title},
+        headers={"Authorization": f"Bearer {login}"},
     )
     return response
 
@@ -105,10 +107,10 @@ def create_post(wait_for_api, login, create_community):
     post_response = request_session.post(
         post_url,
         json={
-            "auth": login,
             "community_id": community_created["id"],
             "name": "Test post",
         },
+        headers={"Authorization": f"Bearer {login}"},
     )
     return post_response
 
@@ -139,10 +141,10 @@ def create_comment(wait_for_api, login, create_post):
     comment_response = request_session.post(
         comment_url,
         json={
-            "auth": login,
             "post_id": post_created["id"],
             "content": "This is a test comment",
         },
+        headers={"Authorization": f"Bearer {login}"},
     )
     return comment_response
 

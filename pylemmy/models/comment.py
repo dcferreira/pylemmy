@@ -1,10 +1,14 @@
 """Implements the Comment class."""
 
-from typing import Optional
+from typing import TYPE_CHECKING, Optional
 
 import pylemmy
 from pylemmy import api
 from pylemmy.endpoints import LemmyAPI
+
+if TYPE_CHECKING:
+    import pylemmy.models.community
+    import pylemmy.models.post
 
 
 class CommentReport:

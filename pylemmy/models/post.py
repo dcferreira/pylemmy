@@ -1,11 +1,14 @@
 """Implements the Post class."""
 
-from typing import List, Optional
+from typing import TYPE_CHECKING, List, Optional
 
 import pylemmy
 from pylemmy import api
 from pylemmy.endpoints import LemmyAPI
 from pylemmy.models.comment import Comment
+
+if TYPE_CHECKING:
+    import pylemmy.models.community
 
 
 class PostReport:
